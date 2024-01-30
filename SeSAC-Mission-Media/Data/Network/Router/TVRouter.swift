@@ -10,7 +10,7 @@ import Foundation
 
 enum TVRouter: Router {
   
-  case topRated(language: Constant.Parameter)
+  case topRated
   case popular
   
   var method: HTTPMethod {
