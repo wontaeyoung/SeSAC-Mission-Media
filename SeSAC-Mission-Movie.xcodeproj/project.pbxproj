@@ -10,7 +10,6 @@
 		6E1F003D2B68DD9300EF388A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F003C2B68DD9300EF388A /* AppDelegate.swift */; };
 		6E1F003F2B68DD9300EF388A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F003E2B68DD9300EF388A /* SceneDelegate.swift */; };
 		6E1F00412B68DD9300EF388A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F00402B68DD9300EF388A /* ViewController.swift */; };
-		6E1F00442B68DD9300EF388A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F00422B68DD9300EF388A /* Main.storyboard */; };
 		6E1F00462B68DD9400EF388A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F00452B68DD9400EF388A /* Assets.xcassets */; };
 		6E1F00492B68DD9400EF388A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F00472B68DD9400EF388A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		6E1F003C2B68DD9300EF388A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E1F003E2B68DD9300EF388A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6E1F00402B68DD9300EF388A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6E1F00432B68DD9300EF388A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E1F00452B68DD9400EF388A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E1F00482B68DD9400EF388A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E1F004A2B68DD9400EF388A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +54,70 @@
 		6E1F003B2B68DD9300EF388A /* SeSAC-Mission-Movie */ = {
 			isa = PBXGroup;
 			children = (
-				6E1F003C2B68DD9300EF388A /* AppDelegate.swift */,
-				6E1F003E2B68DD9300EF388A /* SceneDelegate.swift */,
-				6E1F00402B68DD9300EF388A /* ViewController.swift */,
-				6E1F00422B68DD9300EF388A /* Main.storyboard */,
-				6E1F00452B68DD9400EF388A /* Assets.xcassets */,
-				6E1F00472B68DD9400EF388A /* LaunchScreen.storyboard */,
-				6E1F004A2B68DD9400EF388A /* Info.plist */,
+				6E1F005A2B68E2DC00EF388A /* App */,
+				6E1F005B2B68E2DE00EF388A /* Config */,
+				6E1F005C2B68E2E000EF388A /* Data */,
+				6E1F005F2B68E2E800EF388A /* Presenter */,
+				6E1F005E2B68E2E400EF388A /* Resource */,
+				6E1F005D2B68E2E200EF388A /* Router */,
+				6E1F00602B68E2EC00EF388A /* Utility */,
 			);
 			path = "SeSAC-Mission-Movie";
+			sourceTree = "<group>";
+		};
+		6E1F005A2B68E2DC00EF388A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6E1F003C2B68DD9300EF388A /* AppDelegate.swift */,
+				6E1F003E2B68DD9300EF388A /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6E1F005B2B68E2DE00EF388A /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6E1F004A2B68DD9400EF388A /* Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		6E1F005C2B68E2E000EF388A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6E1F005D2B68E2E200EF388A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		6E1F005E2B68E2E400EF388A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				6E1F00472B68DD9400EF388A /* LaunchScreen.storyboard */,
+				6E1F00452B68DD9400EF388A /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		6E1F005F2B68E2E800EF388A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				6E1F00402B68DD9300EF388A /* ViewController.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		6E1F00602B68E2EC00EF388A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +180,6 @@
 			files = (
 				6E1F00492B68DD9400EF388A /* LaunchScreen.storyboard in Resources */,
 				6E1F00462B68DD9400EF388A /* Assets.xcassets in Resources */,
-				6E1F00442B68DD9300EF388A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +199,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6E1F00422B68DD9300EF388A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E1F00432B68DD9300EF388A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6E1F00472B68DD9400EF388A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,10 +338,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75QZ7682T2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SeSAC-Mission-Movie/Info.plist";
+				INFOPLIST_FILE = "SeSAC-Mission-Movie/Config/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,10 +365,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75QZ7682T2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SeSAC-Mission-Movie/Info.plist";
+				INFOPLIST_FILE = "SeSAC-Mission-Movie/Config/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
