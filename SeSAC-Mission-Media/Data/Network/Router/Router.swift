@@ -11,17 +11,14 @@ import Foundation
 protocol Router: URLRequestConvertible {
   
   var method: HTTPMethod { get }
-  
   var baseURL: String { get }
-  
   var path: String { get }
-  
   var headers: HTTPHeaders { get }
-  
   var parameters: Parameters? { get }
 }
 
 extension Router {
+  
   func asURLRequest() throws -> URLRequest {
     let url: URL = try baseURL.asURL().appendingPathComponent(path)
     
