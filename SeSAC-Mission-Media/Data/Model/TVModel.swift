@@ -10,6 +10,9 @@ struct TMDBTVResponseDTO: DTO {
 }
 
 struct TV: Model {
+  
+  static let imageRequestPath: String = "https://image.tmdb.org/t/p/w500"
+  
   let name: String
   let posterURL: String
   
