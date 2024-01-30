@@ -10,7 +10,7 @@ import Foundation
 
 enum TVRouter: Router {
   
-  case topRated
+  case topRated(language: Constant.Parameter)
   case popular
   
   var method: HTTPMethod {
@@ -42,12 +42,8 @@ enum TVRouter: Router {
   }
   
   var parameters: Parameters? {
-    switch self {
-      case .topRated:
-        return nil
-        
-      case .popular:
-        return nil
-    }
+    let language: Constant.Parameter = .language(iso: .kor)
+    
+    return [language.key: language.value]
   }
 }

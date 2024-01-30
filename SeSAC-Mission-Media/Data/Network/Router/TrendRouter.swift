@@ -34,11 +34,11 @@ enum TrendRouter: Router {
     return [APIKey.TMDB.authorization.key: APIKey.TMDB.authorization.value]
   }
   
+  /// 이후에는 case 별로 파라미터를 가변으로 받아서 처리할 수 있는 방법으로 수정
   var parameters: Parameters? {
-    switch self {
-      case .trendTV:
-        return nil
-    }
+    let language: Constant.Parameter = .language(iso: .kor)
+    
+    return [language.key: language.value]
   }
 }
 
