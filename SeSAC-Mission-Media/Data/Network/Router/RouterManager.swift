@@ -12,7 +12,7 @@ final class RouterManager {
   private init() { }
   
   func callTVRequest(
-    collection: TVCollection,
+    collection: HomeTVCollection,
     completion: @escaping ([TV]) -> Void
   ) {
     

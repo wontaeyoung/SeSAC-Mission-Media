@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-enum TVCollection: Int, CaseIterable {
+enum HomeTVCollection: Int, CaseIterable {
   
   case trend = 0
   case topRated
@@ -24,6 +24,7 @@ enum TVCollection: Int, CaseIterable {
         
       case .popular:
         return "인기있는 TV 프로그램"
+        
     }
   }
   
@@ -43,7 +44,7 @@ final class HomeViewController: BaseViewController {
   }
   
   // MARK: - Property
-  private var tvListDictionary: [TVCollection: [TV]] = [:] {
+  private var tvListDictionary: [HomeTVCollection: [TV]] = [:] {
     didSet {
       tvTableView.reloadData()
     }
@@ -59,11 +60,9 @@ final class HomeViewController: BaseViewController {
   }
   
   override func setAttribute() {
-    TVCollection.allCases.forEach { collection in
-      RouterManager.shared.callRequest(collection: collection) { [weak self] models in
-        guard let self else { return }
-        
-        tvListDictionary[collection] = models
+    HomeTVCollection.allCases.forEach { collection in
+      RouterManager.shared.callTVRequest(collection: collection) { models in
+        self.tvListDictionary[collection] = models
       }
     }
   }
@@ -81,13 +80,13 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return TVCollection.allCases.count
+    return HomeTVCollection.allCases.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: TVTableViewCell.identifier, for: indexPath) as! TVTableViewCell
     
-    guard let collection = TVCollection(rawValue: indexPath.row) else {
+    guard let collection = HomeTVCollection(rawValue: indexPath.row) else {
       return cell
     }
     
@@ -112,7 +111,7 @@ extension HomeViewController: CollectionControllable {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    guard let collection = TVCollection(rawValue: collectionView.tag) else {
+    guard let collection = HomeTVCollection(rawValue: collectionView.tag) else {
       return 0
     }
     
@@ -123,7 +122,7 @@ extension HomeViewController: CollectionControllable {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TVCollectionViewCell.identifier, for: indexPath) as! TVCollectionViewCell
     
     guard 
-      let collection = TVCollection(rawValue: collectionView.tag),
+      let collection = HomeTVCollection(rawValue: collectionView.tag),
       let data = tvListDictionary[collection]?[indexPath.row]
     else {
       return cell
