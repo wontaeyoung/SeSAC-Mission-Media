@@ -14,11 +14,15 @@ enum Constant {
     }
     
     case language(iso: ISO)
+    case query
     
     var key: String {
       switch self {
         case .language:
           return "language"
+          
+        case .query:
+          return "query"
       }
     }
     
@@ -26,6 +30,9 @@ enum Constant {
       switch self {
         case .language(let iso):
           return iso.rawValue
+          
+        case .query:
+          return ""
       }
     }
   }
