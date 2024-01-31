@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6E1F003D2B68DD9300EF388A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F003C2B68DD9300EF388A /* AppDelegate.swift */; };
 		6E1F003F2B68DD9300EF388A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F003E2B68DD9300EF388A /* SceneDelegate.swift */; };
-		6E1F00412B68DD9300EF388A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F00402B68DD9300EF388A /* ViewController.swift */; };
 		6E1F00462B68DD9400EF388A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F00452B68DD9400EF388A /* Assets.xcassets */; };
 		6E1F00492B68DD9400EF388A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1F00472B68DD9400EF388A /* LaunchScreen.storyboard */; };
 		6E1F00622B68E4DD00EF388A /* TVRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F00612B68E4DD00EF388A /* TVRouter.swift */; };
@@ -21,13 +20,30 @@
 		6E51484C2B68EB0300D5E3E0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51484B2B68EB0300D5E3E0 /* Router.swift */; };
 		6E51484F2B68EC3A00D5E3E0 /* Configurator+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51484E2B68EC3A00D5E3E0 /* Configurator+.swift */; };
 		6E5148532B690ED600D5E3E0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148522B690ED600D5E3E0 /* APIKey.swift */; };
+		6E5148582B69111A00D5E3E0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148572B69111A00D5E3E0 /* BaseViewController.swift */; };
+		6E51485A2B69176D00D5E3E0 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148592B69176D00D5E3E0 /* BaseTableViewCell.swift */; };
+		6E51485C2B69196200D5E3E0 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51485B2B69196200D5E3E0 /* BaseCollectionViewCell.swift */; };
+		6E5148602B691A6D00D5E3E0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51485F2B691A6D00D5E3E0 /* HomeViewController.swift */; };
+		6E5148642B691FD800D5E3E0 /* CollectionControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148632B691FD800D5E3E0 /* CollectionControllable.swift */; };
+		6E5148662B6924CC00D5E3E0 /* TVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148652B6924CC00D5E3E0 /* TVTableViewCell.swift */; };
+		6E5148682B693D5B00D5E3E0 /* RouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148672B693D5B00D5E3E0 /* RouterManager.swift */; };
+		6E51486B2B693E1B00D5E3E0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486A2B693E1B00D5E3E0 /* Model.swift */; };
+		6E51486E2B693F5200D5E3E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486D2B693F5200D5E3E0 /* Constant.swift */; };
+		6E5148702B69418E00D5E3E0 /* TVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486F2B69418E00D5E3E0 /* TVModel.swift */; };
+		6E5148722B69456200D5E3E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148712B69456200D5E3E0 /* APIManager.swift */; };
+		6E5148742B69496000D5E3E0 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148732B69496000D5E3E0 /* DTO.swift */; };
+		6E5148762B694FCA00D5E3E0 /* TableControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148752B694FCA00D5E3E0 /* TableControllable.swift */; };
+		6E51487A2B69516200D5E3E0 /* PosterImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148792B69516200D5E3E0 /* PosterImageView.swift */; };
+		6E51487C2B6951AD00D5E3E0 /* PrimaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51487B2B6951AD00D5E3E0 /* PrimaryLabel.swift */; };
+		6E51487E2B69526B00D5E3E0 /* SecondaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51487D2B69526B00D5E3E0 /* SecondaryLabel.swift */; };
+		6E5148802B6952D300D5E3E0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51487F2B6952D300D5E3E0 /* UIView.swift */; };
+		6E5148822B69549000D5E3E0 /* TVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148812B69549000D5E3E0 /* TVCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6E1F00392B68DD9300EF388A /* SeSAC-Mission-Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SeSAC-Mission-Media.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1F003C2B68DD9300EF388A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E1F003E2B68DD9300EF388A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6E1F00402B68DD9300EF388A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6E1F00452B68DD9400EF388A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E1F00482B68DD9400EF388A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E1F004A2B68DD9400EF388A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +52,24 @@
 		6E51484B2B68EB0300D5E3E0 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		6E51484E2B68EC3A00D5E3E0 /* Configurator+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configurator+.swift"; sourceTree = "<group>"; };
 		6E5148522B690ED600D5E3E0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		6E5148572B69111A00D5E3E0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6E5148592B69176D00D5E3E0 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		6E51485B2B69196200D5E3E0 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		6E51485F2B691A6D00D5E3E0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6E5148632B691FD800D5E3E0 /* CollectionControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionControllable.swift; sourceTree = "<group>"; };
+		6E5148652B6924CC00D5E3E0 /* TVTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTableViewCell.swift; sourceTree = "<group>"; };
+		6E5148672B693D5B00D5E3E0 /* RouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterManager.swift; sourceTree = "<group>"; };
+		6E51486A2B693E1B00D5E3E0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		6E51486D2B693F5200D5E3E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		6E51486F2B69418E00D5E3E0 /* TVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVModel.swift; sourceTree = "<group>"; };
+		6E5148712B69456200D5E3E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		6E5148732B69496000D5E3E0 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
+		6E5148752B694FCA00D5E3E0 /* TableControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableControllable.swift; sourceTree = "<group>"; };
+		6E5148792B69516200D5E3E0 /* PosterImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterImageView.swift; sourceTree = "<group>"; };
+		6E51487B2B6951AD00D5E3E0 /* PrimaryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryLabel.swift; sourceTree = "<group>"; };
+		6E51487D2B69526B00D5E3E0 /* SecondaryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryLabel.swift; sourceTree = "<group>"; };
+		6E51487F2B6952D300D5E3E0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		6E5148812B69549000D5E3E0 /* TVCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +137,7 @@
 		6E1F005C2B68E2E000EF388A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6E5148692B693DEE00D5E3E0 /* Model */,
 				6E5148492B68EA3700D5E3E0 /* Network */,
 			);
 			path = Data;
@@ -114,6 +149,7 @@
 				6E1F00612B68E4DD00EF388A /* TVRouter.swift */,
 				6E5148472B68E8EE00D5E3E0 /* TrendRouter.swift */,
 				6E51484B2B68EB0300D5E3E0 /* Router.swift */,
+				6E5148672B693D5B00D5E3E0 /* RouterManager.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -130,7 +166,8 @@
 		6E1F005F2B68E2E800EF388A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				6E1F00402B68DD9300EF388A /* ViewController.swift */,
+				6E5148542B69110600D5E3E0 /* Common */,
+				6E51485D2B6919FC00D5E3E0 /* Main */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -138,6 +175,7 @@
 		6E1F00602B68E2EC00EF388A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				6E51486C2B693F4C00D5E3E0 /* Constant */,
 				6E51484D2B68EC3000D5E3E0 /* Extension */,
 			);
 			path = Utility;
@@ -147,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				6E1F005D2B68E2E200EF388A /* Router */,
+				6E5148712B69456200D5E3E0 /* APIManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -155,8 +194,84 @@
 			isa = PBXGroup;
 			children = (
 				6E51484E2B68EC3A00D5E3E0 /* Configurator+.swift */,
+				6E51487F2B6952D300D5E3E0 /* UIView.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		6E5148542B69110600D5E3E0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6E5148772B6950A100D5E3E0 /* Protocol */,
+				6E5148552B69110D00D5E3E0 /* Base */,
+				6E5148782B69515200D5E3E0 /* ReusableView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6E5148552B69110D00D5E3E0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6E5148572B69111A00D5E3E0 /* BaseViewController.swift */,
+				6E5148592B69176D00D5E3E0 /* BaseTableViewCell.swift */,
+				6E51485B2B69196200D5E3E0 /* BaseCollectionViewCell.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6E51485D2B6919FC00D5E3E0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				6E51485E2B691A1600D5E3E0 /* Home */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6E51485E2B691A1600D5E3E0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6E51485F2B691A6D00D5E3E0 /* HomeViewController.swift */,
+				6E5148652B6924CC00D5E3E0 /* TVTableViewCell.swift */,
+				6E5148812B69549000D5E3E0 /* TVCollectionViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6E5148692B693DEE00D5E3E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E5148732B69496000D5E3E0 /* DTO.swift */,
+				6E51486A2B693E1B00D5E3E0 /* Model.swift */,
+				6E51486F2B69418E00D5E3E0 /* TVModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6E51486C2B693F4C00D5E3E0 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				6E51486D2B693F5200D5E3E0 /* Constant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		6E5148772B6950A100D5E3E0 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6E5148752B694FCA00D5E3E0 /* TableControllable.swift */,
+				6E5148632B691FD800D5E3E0 /* CollectionControllable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		6E5148782B69515200D5E3E0 /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				6E5148792B69516200D5E3E0 /* PosterImageView.swift */,
+				6E51487B2B6951AD00D5E3E0 /* PrimaryLabel.swift */,
+				6E51487D2B69526B00D5E3E0 /* SecondaryLabel.swift */,
+			);
+			path = ReusableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,13 +355,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E51486B2B693E1B00D5E3E0 /* Model.swift in Sources */,
 				6E5148482B68E8EE00D5E3E0 /* TrendRouter.swift in Sources */,
-				6E1F00412B68DD9300EF388A /* ViewController.swift in Sources */,
+				6E5148702B69418E00D5E3E0 /* TVModel.swift in Sources */,
 				6E5148532B690ED600D5E3E0 /* APIKey.swift in Sources */,
+				6E51486E2B693F5200D5E3E0 /* Constant.swift in Sources */,
+				6E5148682B693D5B00D5E3E0 /* RouterManager.swift in Sources */,
 				6E1F00622B68E4DD00EF388A /* TVRouter.swift in Sources */,
 				6E1F003D2B68DD9300EF388A /* AppDelegate.swift in Sources */,
+				6E5148662B6924CC00D5E3E0 /* TVTableViewCell.swift in Sources */,
+				6E51485A2B69176D00D5E3E0 /* BaseTableViewCell.swift in Sources */,
+				6E51485C2B69196200D5E3E0 /* BaseCollectionViewCell.swift in Sources */,
 				6E51484C2B68EB0300D5E3E0 /* Router.swift in Sources */,
+				6E5148762B694FCA00D5E3E0 /* TableControllable.swift in Sources */,
+				6E5148722B69456200D5E3E0 /* APIManager.swift in Sources */,
+				6E5148742B69496000D5E3E0 /* DTO.swift in Sources */,
+				6E51487C2B6951AD00D5E3E0 /* PrimaryLabel.swift in Sources */,
+				6E5148802B6952D300D5E3E0 /* UIView.swift in Sources */,
+				6E5148602B691A6D00D5E3E0 /* HomeViewController.swift in Sources */,
+				6E5148582B69111A00D5E3E0 /* BaseViewController.swift in Sources */,
+				6E5148822B69549000D5E3E0 /* TVCollectionViewCell.swift in Sources */,
+				6E51487E2B69526B00D5E3E0 /* SecondaryLabel.swift in Sources */,
+				6E5148642B691FD800D5E3E0 /* CollectionControllable.swift in Sources */,
 				6E51484F2B68EC3A00D5E3E0 /* Configurator+.swift in Sources */,
+				6E51487A2B69516200D5E3E0 /* PosterImageView.swift in Sources */,
 				6E1F003F2B68DD9300EF388A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
