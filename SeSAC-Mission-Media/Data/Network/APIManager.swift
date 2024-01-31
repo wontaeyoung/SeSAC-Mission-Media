@@ -17,6 +17,31 @@ final class APIManager {
   
   
   // MARK: - Method
+  /// Request By ResponseDTO
+  func callRequest<T: ResponseDTO, U: Model>(
+    responseType: T.Type,
+    router: Router,
+    completion: @escaping ([U]) -> Void
+  ) where T.Object.Entity == U {
+    
+    AF
+      .request(router)
+      .validate()
+      .responseDecodable(of: T.self) { response in
+        
+        switch response.result {
+            
+          case .success(let result):
+            let models = result.results.map { $0.asModel() }
+            completion(models)
+            
+          case .failure(let error):
+            LogManager.shared.log(with: error, to: .network)
+        }
+      }
+  }
+  
+  /// Request By DTO
   func callRequest<T: DTO, U: Model>(
     responseType: T.Type,
     router: Router,
@@ -26,14 +51,13 @@ final class APIManager {
     AF
       .request(router)
       .validate()
-      .responseDecodable(of: T.self) { [weak self] response in
-        
-        guard let self else { return }
+      .responseDecodable(of: [T].self) { response in
         
         switch response.result {
             
-          case .success(let dto):
-            completion(dto.results)
+          case .success(let result):
+            let models = result.map { $0.asModel() }
+            completion(models)
             
           case .failure(let error):
             LogManager.shared.log(with: error, to: .network)

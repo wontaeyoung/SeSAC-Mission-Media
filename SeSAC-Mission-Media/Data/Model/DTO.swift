@@ -8,6 +8,11 @@
 protocol DTO: Decodable {
   associatedtype Entity: Model
   
-  var results: [Entity] { get }
+  func asModel() -> Entity
 }
 
+protocol ResponseDTO: Decodable {
+  associatedtype Object: DTO
+  
+  var results: [Object] { get }
+}

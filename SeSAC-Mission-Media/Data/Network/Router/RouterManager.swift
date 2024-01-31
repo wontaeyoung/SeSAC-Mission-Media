@@ -11,8 +11,7 @@ final class RouterManager {
   
   private init() { }
   
-  /// 제네릭으로 설정하고 간접적으로 TV 모델인걸 구현체에서 구체화 해야함
-  func callRequest(
+  func callTVRequest(
     collection: TVCollection,
     completion: @escaping ([TV]) -> Void
   ) {
@@ -20,21 +19,21 @@ final class RouterManager {
     switch collection {
       case .trend:
         APIManager.shared.callRequest(
-          responseType: TMDBTVResponseDTO.self,
+          responseType: TVResponseDTO.self,
           router: TrendRouter.trendTV(timeWindow: .week),
           completion: completion
         )
         
       case .topRated:
         APIManager.shared.callRequest(
-          responseType: TMDBTVResponseDTO.self,
+          responseType: TVResponseDTO.self,
           router: TVRouter.topRated,
           completion: completion
         )
         
       case .popular:
         APIManager.shared.callRequest(
-          responseType: TMDBTVResponseDTO.self,
+          responseType: TVResponseDTO.self,
           router: TVRouter.popular,
           completion: completion
         )

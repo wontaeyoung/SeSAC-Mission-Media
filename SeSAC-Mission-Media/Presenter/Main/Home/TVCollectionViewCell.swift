@@ -36,16 +36,9 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
   
   // MARK: - Method
   func setData(with data: TV) {
-    self.nameLabel.text = data.name
-    
-    guard
-      let posterURL = data.posterURL,
-      let url = URL(string: TV.imageRequestPath + posterURL)
-    else {
-      return
-    }
-    
+    let url = URL(string: APIKey.TMDB.imageRequestPath + data.posterURL)
     self.posterImageView.kf.setImage(with: url, placeholder: UIImage.actions)
+    self.nameLabel.text = data.name
   }
 }
 
