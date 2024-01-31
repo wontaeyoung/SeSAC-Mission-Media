@@ -11,9 +11,10 @@ final class RouterManager {
   
   private init() { }
   
+  /// 제네릭으로 설정하고 간접적으로 TV 모델인걸 구현체에서 구체화 해야함
   func callRequest(
     collection: TVCollection,
-    completion: @escaping ([Model]) -> Void
+    completion: @escaping ([TV]) -> Void
   ) {
     
     switch collection {
