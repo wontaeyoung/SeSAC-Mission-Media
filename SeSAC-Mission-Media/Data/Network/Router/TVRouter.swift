@@ -12,6 +12,9 @@ enum TVRouter: Router {
   
   case topRated
   case popular
+  case seriesDetails(seriesID: Int)
+  case seriesRecommandation(seriesID: Int)
+  case seriesAggregateCredits(seriesID: Int)
   
   var method: HTTPMethod {
     switch self {
@@ -19,6 +22,15 @@ enum TVRouter: Router {
         return .get
         
       case .popular:
+        return .get
+        
+      case .seriesDetails:
+        return .get
+        
+      case .seriesRecommandation:
+        return .get
+        
+      case .seriesAggregateCredits:
         return .get
     }
   }
@@ -34,6 +46,15 @@ enum TVRouter: Router {
         
       case .popular:
         return "/popular"
+        
+      case .seriesDetails(let seriesID):
+        return "/\(seriesID)"
+        
+      case .seriesRecommandation(let seriesID):
+        return "/\(seriesID)/recommendations"
+        
+      case .seriesAggregateCredits(let seriesID):
+        return "/\(seriesID)/aggregate_credits"
     }
   }
   
@@ -42,7 +63,23 @@ enum TVRouter: Router {
   }
   
   var parameters: Parameters? {
-    let language: Constant.Parameter = .language(iso: .kor)
-    return [language.key: language.value]
+    let parameters = Constant.Parameter.self
+    
+    switch self {
+      case .topRated:
+        return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
+        
+      case .popular:
+        return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
+        
+      case .seriesDetails:
+        return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
+        
+      case .seriesRecommandation:
+        return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
+        
+      case .seriesAggregateCredits:
+        return nil
+    }
   }
 }

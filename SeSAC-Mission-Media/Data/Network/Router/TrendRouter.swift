@@ -36,8 +36,12 @@ enum TrendRouter: Router {
   
   /// 이후에는 case 별로 파라미터를 가변으로 받아서 처리할 수 있는 방법으로 수정
   var parameters: Parameters? {
-    let language: Constant.Parameter = .language(iso: .kor)
-    return [language.key: language.value]
+    let parameters = Constant.Parameter.self
+    
+    switch self {
+      case .trendTV:
+        return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
+    }
   }
 }
 
