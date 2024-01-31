@@ -124,7 +124,7 @@ extension HomeViewController: CollectionControllable {
     
     guard 
       let collection = TVCollection(rawValue: collectionView.tag),
-      let data = tvListDictionary[collection]?[collectionView.tag]
+      let data = tvListDictionary[collection]?[indexPath.row]
     else {
       return cell
     }
