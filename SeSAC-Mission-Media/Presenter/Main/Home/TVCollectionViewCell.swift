@@ -29,14 +29,23 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
     nameLabel.snp.makeConstraints {
       $0.top.equalTo(posterImageView.snp.bottom).offset(4)
       $0.horizontalEdges.bottom.equalToSuperview().inset(4)
+      $0.height.equalTo(20)
     }
   }
   
   
   // MARK: - Method
   func setData(with data: TV) {
-    self.posterImageView.kf.setImage(with: URL(string: TV.imageRequestPath + data.posterURL))
     self.nameLabel.text = data.name
+    
+    guard
+      let posterURL = data.posterURL,
+      let url = URL(string: TV.imageRequestPath + posterURL)
+    else {
+      return
+    }
+    
+    self.posterImageView.kf.setImage(with: url, placeholder: UIImage.actions)
   }
 }
 

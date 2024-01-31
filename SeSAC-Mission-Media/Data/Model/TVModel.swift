@@ -14,7 +14,7 @@ struct TV: Model {
   static let imageRequestPath: String = "https://image.tmdb.org/t/p/w500"
   
   let name: String
-  let posterURL: String
+  let posterURL: String?
   
   enum CodingKeys: String, CodingKey {
     case name
