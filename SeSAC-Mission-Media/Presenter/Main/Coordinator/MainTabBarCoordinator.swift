@@ -56,7 +56,9 @@ final class MainTabBarCoordinator: Coordinator {
         self.addChild(homeCoordinator)
         
       case .search:
-        print("ASD")
+        let searchCoordinator = SearchCoordinator(tabPageController)
+        searchCoordinator.start()
+        self.addChild(searchCoordinator)
     }
   }
 }

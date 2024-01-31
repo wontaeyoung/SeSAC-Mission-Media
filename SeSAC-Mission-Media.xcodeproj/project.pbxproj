@@ -29,7 +29,7 @@
 		6E5148682B693D5B00D5E3E0 /* RouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148672B693D5B00D5E3E0 /* RouterManager.swift */; };
 		6E51486B2B693E1B00D5E3E0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486A2B693E1B00D5E3E0 /* Model.swift */; };
 		6E51486E2B693F5200D5E3E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486D2B693F5200D5E3E0 /* Constant.swift */; };
-		6E5148702B69418E00D5E3E0 /* TVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486F2B69418E00D5E3E0 /* TVModel.swift */; };
+		6E5148702B69418E00D5E3E0 /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486F2B69418E00D5E3E0 /* TV.swift */; };
 		6E5148722B69456200D5E3E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148712B69456200D5E3E0 /* APIManager.swift */; };
 		6E5148742B69496000D5E3E0 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148732B69496000D5E3E0 /* DTO.swift */; };
 		6E5148762B694FCA00D5E3E0 /* TableControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148752B694FCA00D5E3E0 /* TableControllable.swift */; };
@@ -49,6 +49,9 @@
 		6E5148A52B6A33B800D5E3E0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148A42B6A33B800D5E3E0 /* AppCoordinator.swift */; };
 		6E5148A82B6A36EE00D5E3E0 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148A72B6A36EE00D5E3E0 /* HomeCoordinator.swift */; };
 		6EB692D92B6A3DB300EFA959 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692D82B6A3DB300EFA959 /* SearchRouter.swift */; };
+		6EB692DC2B6A531300EFA959 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692DB2B6A531300EFA959 /* SearchCoordinator.swift */; };
+		6EB692DE2B6A536300EFA959 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692DD2B6A536300EFA959 /* SearchViewController.swift */; };
+		6EB692E22B6A5EB300EFA959 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692E12B6A5EB300EFA959 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +75,7 @@
 		6E5148672B693D5B00D5E3E0 /* RouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterManager.swift; sourceTree = "<group>"; };
 		6E51486A2B693E1B00D5E3E0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6E51486D2B693F5200D5E3E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		6E51486F2B69418E00D5E3E0 /* TVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVModel.swift; sourceTree = "<group>"; };
+		6E51486F2B69418E00D5E3E0 /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		6E5148712B69456200D5E3E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		6E5148732B69496000D5E3E0 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		6E5148752B694FCA00D5E3E0 /* TableControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableControllable.swift; sourceTree = "<group>"; };
@@ -92,6 +95,9 @@
 		6E5148A42B6A33B800D5E3E0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		6E5148A72B6A36EE00D5E3E0 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		6EB692D82B6A3DB300EFA959 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		6EB692DB2B6A531300EFA959 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		6EB692DD2B6A536300EFA959 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6EB692E12B6A5EB300EFA959 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,11 +176,11 @@
 		6E1F005D2B68E2E200EF388A /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				6E1F00612B68E4DD00EF388A /* TVRouter.swift */,
-				6E5148472B68E8EE00D5E3E0 /* TrendRouter.swift */,
 				6E51484B2B68EB0300D5E3E0 /* Router.swift */,
 				6E5148672B693D5B00D5E3E0 /* RouterManager.swift */,
 				6EB692D82B6A3DB300EFA959 /* SearchRouter.swift */,
+				6E5148472B68E8EE00D5E3E0 /* TrendRouter.swift */,
+				6E1F00612B68E4DD00EF388A /* TVRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -274,7 +280,7 @@
 			children = (
 				6E5148732B69496000D5E3E0 /* DTO.swift */,
 				6E51486A2B693E1B00D5E3E0 /* Model.swift */,
-				6E51486F2B69418E00D5E3E0 /* TVModel.swift */,
+				6E51486F2B69418E00D5E3E0 /* TV.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,8 +349,19 @@
 		6EB692D52B6A3D3100EFA959 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				6EB692DA2B6A530000EFA959 /* Coordinator */,
+				6EB692DD2B6A536300EFA959 /* SearchViewController.swift */,
+				6EB692E12B6A5EB300EFA959 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		6EB692DA2B6A530000EFA959 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6EB692DB2B6A531300EFA959 /* SearchCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,7 +449,8 @@
 				6E5148482B68E8EE00D5E3E0 /* TrendRouter.swift in Sources */,
 				6E5148A52B6A33B800D5E3E0 /* AppCoordinator.swift in Sources */,
 				6E51489C2B6A2A2400D5E3E0 /* Coordinator.swift in Sources */,
-				6E5148702B69418E00D5E3E0 /* TVModel.swift in Sources */,
+				6EB692DE2B6A536300EFA959 /* SearchViewController.swift in Sources */,
+				6E5148702B69418E00D5E3E0 /* TV.swift in Sources */,
 				6E5148932B6A1C9D00D5E3E0 /* CoordinatorError.swift in Sources */,
 				6E5148532B690ED600D5E3E0 /* APIKey.swift in Sources */,
 				6E51486E2B693F5200D5E3E0 /* Constant.swift in Sources */,
@@ -448,6 +466,7 @@
 				6E51484C2B68EB0300D5E3E0 /* Router.swift in Sources */,
 				6E5148762B694FCA00D5E3E0 /* TableControllable.swift in Sources */,
 				6E5148722B69456200D5E3E0 /* APIManager.swift in Sources */,
+				6EB692E22B6A5EB300EFA959 /* SearchTableViewCell.swift in Sources */,
 				6E5148742B69496000D5E3E0 /* DTO.swift in Sources */,
 				6E51487C2B6951AD00D5E3E0 /* PrimaryLabel.swift in Sources */,
 				6E5148802B6952D300D5E3E0 /* UIView.swift in Sources */,
@@ -459,6 +478,7 @@
 				6E51487E2B69526B00D5E3E0 /* SecondaryLabel.swift in Sources */,
 				6E5148A32B6A318D00D5E3E0 /* MainTabBarPage.swift in Sources */,
 				6E5148642B691FD800D5E3E0 /* CollectionControllable.swift in Sources */,
+				6EB692DC2B6A531300EFA959 /* SearchCoordinator.swift in Sources */,
 				6E51489A2B6A286900D5E3E0 /* AFError+.swift in Sources */,
 				6E5148982B6A1CFC00D5E3E0 /* LogManager.swift in Sources */,
 				6E51484F2B68EC3A00D5E3E0 /* Configurator+.swift in Sources */,
