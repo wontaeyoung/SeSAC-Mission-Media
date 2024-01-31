@@ -110,4 +110,8 @@ extension Coordinator {
     
     self.present(alertController)
   }
+  
+  func addChild(_ childCoordinator: Coordinator) {
+    self.childCoordinators.append(childCoordinator)
+  }
 }
