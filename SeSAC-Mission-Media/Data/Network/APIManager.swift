@@ -11,15 +11,12 @@ import Foundation
 
 final class APIManager {
   
+  // MARK: - Singleton
   static let shared = APIManager()
-  
   private init() { }
   
-  private let networkLogger = Logger(
-    subsystem: Bundle.main.bundleIdentifier ?? "",
-    category: "Network"
-  )
   
+  // MARK: - Method
   func callRequest<T: DTO, U: Model>(
     responseType: T.Type,
     router: Router,
@@ -39,7 +36,7 @@ final class APIManager {
             completion(dto.results)
             
           case .failure(let error):
-            networkLogger.error("Request Failed: \(error.localizedDescription)")
+            LogManager.shared.log(with: error, to: .network)
         }
       }
   }
