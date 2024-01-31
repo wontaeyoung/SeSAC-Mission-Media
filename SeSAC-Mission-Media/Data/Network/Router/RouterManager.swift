@@ -39,4 +39,22 @@ final class RouterManager {
         )
     }
   }
+  
+  func callTVRequest(
+    collection: SearchTVCollection,
+    completion: @escaping ([TV]) -> Void
+  ) {
+    
+    switch collection {
+      case .search(let query):
+        APIManager.shared.callRequest(
+          responseType: TVResponseDTO.self,
+          router: SearchRouter.tv(query: query),
+          completion: completion
+        )
+        
+      default:
+        print("")
+    }
+  }
 }
