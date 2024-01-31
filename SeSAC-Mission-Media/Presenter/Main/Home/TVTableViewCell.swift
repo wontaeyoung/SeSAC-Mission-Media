@@ -12,7 +12,9 @@ final class TVTableViewCell: BaseTableViewCell {
   
   // MARK: - UI
   private let titleLabel = PrimaryLabel(text: nil)
-  private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+  private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init()).configured {
+    $0.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
+  }
   
   
   // MARK: - Life Cycle
@@ -21,12 +23,7 @@ final class TVTableViewCell: BaseTableViewCell {
   }
   
   override func setAttribute() {
-    collectionView.collectionViewLayout = UICollectionViewFlowLayout().configured {
-      $0.itemSize = .init(width: 120, height: 160)
-      $0.minimumLineSpacing = 10
-      $0.minimumInteritemSpacing = 0
-      $0.scrollDirection = .horizontal
-    }
+    
   }
   
   override func setConstraint() {
@@ -49,13 +46,13 @@ final class TVTableViewCell: BaseTableViewCell {
     self.collectionView.dataSource = controller
   }
   
-  func register(with cellType: BaseTableViewCell.Type) {
-    self.collectionView.register(cellType, forCellWithReuseIdentifier: cellType.identifier)
-  }
-  
   func setData(tvCollection: TVCollection) {
     titleLabel.text = tvCollection.title
     collectionView.tag = tvCollection.tag
+  }
+  
+  func setCollectionLayout(with layout: UICollectionViewFlowLayout) {
+    self.collectionView.collectionViewLayout = layout
   }
   
   func reload() {
