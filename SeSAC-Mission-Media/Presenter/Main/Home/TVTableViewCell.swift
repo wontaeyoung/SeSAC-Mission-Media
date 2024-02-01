@@ -46,7 +46,7 @@ final class TVTableViewCell: BaseTableViewCell {
     self.collectionView.dataSource = controller
   }
   
-  func setData(tvCollection: HomeTVCollection) {
+  func setData(tvCollection: TVCollection) {
     titleLabel.text = tvCollection.title
     collectionView.tag = tvCollection.tag
   }

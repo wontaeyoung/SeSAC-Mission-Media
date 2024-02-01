@@ -30,6 +30,7 @@ final class SearchTVViewController: BaseViewController {
   }
   
   // MARK: - Property
+  weak var coordinator: SearchCoordinator?
   private var tvList: [TV] = [] {
     didSet {
       resultTableView.reloadData()
@@ -82,5 +83,11 @@ extension SearchTVViewController: TableControllable {
     cell.setData(data: data)
     
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let data = tvList[indexPath.row]
+    
+    coordinator?.showSearchDetailViewController(with: data.id)
   }
 }

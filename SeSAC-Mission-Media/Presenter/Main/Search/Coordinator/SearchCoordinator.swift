@@ -26,8 +26,16 @@ final class SearchCoordinator: Coordinator {
 extension SearchCoordinator {
   func showSearchViewController() {
     let viewController = SearchTVViewController()
+    viewController.coordinator = self
     
     self.push(viewController, animation: false)
+  }
+  
+  func showSearchDetailViewController(with seriesID: Int) {
+    let viewController = SearchTVDetailViewController(seriesID: seriesID)
+    viewController.coordinator = self
+    
+    self.push(viewController)
   }
 }
 
