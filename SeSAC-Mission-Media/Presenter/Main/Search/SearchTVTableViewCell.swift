@@ -12,8 +12,8 @@ final class SearchTVTableViewCell: BaseTableViewCell {
   
   // MARK: - UI
   private let posterImageView = PosterImageView(frame: .zero)
-  private let titleLabel = PrimaryLabel(text: nil)
-  private let overviewLabel = SecondaryLabel(text: nil).configured {
+  private let titleLabel = PrimaryLabel()
+  private let overviewLabel = SecondaryLabel().configured {
     $0.numberOfLines = 5
   }
   
@@ -51,8 +51,4 @@ final class SearchTVTableViewCell: BaseTableViewCell {
     titleLabel.text = data.name
     overviewLabel.text = data.overview
   }
-}
-
-#Preview {
-  SearchTVTableViewCell()
 }
