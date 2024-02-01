@@ -11,7 +11,7 @@ import SnapKit
 final class SearchTVTableViewCell: BaseTableViewCell {
   
   // MARK: - UI
-  private let posterImageView = PosterImageView(frame: .zero)
+  private let posterImageView = PosterImageView(samplingHeight: 160)
   private let titleLabel = PrimaryLabel()
   private let overviewLabel = SecondaryLabel().configured {
     $0.numberOfLines = 5
@@ -47,7 +47,7 @@ final class SearchTVTableViewCell: BaseTableViewCell {
   
   // MARK: - Method
   func setData(data: TV) {
-    posterImageView.kf.setImage(with: URL(string: APIKey.TMDB.imageRequestPath + data.posterURL))
+    posterImageView.setImage(with: URL(string: APIKey.TMDB.imageRequestPath + data.posterURL), by: posterImageView.samplingSize)
     titleLabel.text = data.name
     overviewLabel.text = data.overview
   }

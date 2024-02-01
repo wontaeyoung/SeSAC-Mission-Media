@@ -6,12 +6,22 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class PosterImageView: UIImageView {
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+  var samplingHeight: CGFloat?
+  
+  var samplingSize: CGSize {
+    guard let samplingHeight else { return self.frame.size }
     
+    return CGSize(width: samplingHeight * 0.75, height: samplingHeight)
+  }
+  
+  init(samplingHeight: CGFloat?) {
+    super.init(frame: .zero)
+    
+    self.samplingHeight = samplingHeight
     configureView()
   }
   

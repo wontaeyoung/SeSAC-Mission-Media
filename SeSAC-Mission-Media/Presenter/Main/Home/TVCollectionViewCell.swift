@@ -12,7 +12,7 @@ import Kingfisher
 final class TVCollectionViewCell: BaseCollectionViewCell {
   
   // MARK: - UI
-  private let posterImageView = PosterImageView(frame: .zero)
+  private let posterImageView = PosterImageView(samplingHeight: 160)
   private let nameLabel = SecondaryLabel()
   
   
@@ -37,6 +37,7 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
   // MARK: - Method
   func setData(with data: TV) {
     let url = URL(string: APIKey.TMDB.imageRequestPath + data.posterURL)
+    self.posterImageView.setImage(with: url, by: posterImageView.samplingSize)
     self.posterImageView.kf.setImage(with: url, placeholder: UIImage.actions)
     self.nameLabel.text = data.name
   }
