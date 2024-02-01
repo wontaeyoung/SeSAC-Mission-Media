@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  SearchTVViewController.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 1/31/24.
@@ -16,7 +16,7 @@ enum SearchTVCollection {
   case cast
 }
 
-final class SearchViewController: BaseViewController {
+final class SearchTVViewController: BaseViewController {
   
   // MARK: - UI
   private lazy var searchBar = UISearchBar().configured {
@@ -34,7 +34,7 @@ final class SearchViewController: BaseViewController {
   private lazy var resultTableView = UITableView().configured {
     $0.delegate = self
     $0.dataSource = self
-    $0.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+    $0.register(SearchTVTableViewCell.self, forCellReuseIdentifier: SearchTVTableViewCell.identifier)
   }
   
   // MARK: - Property
@@ -61,14 +61,14 @@ final class SearchViewController: BaseViewController {
     }
     
     resultTableView.snp.makeConstraints {
-      $0.top.equalTo(searchBar.snp.bottom)
+      $0.top.equalTo(searchBar.snp.bottom).offset(8)
       $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
     }
   }
 }
 
-extension SearchViewController: UISearchBarDelegate {
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+extension SearchTVViewController: UISearchBarDelegate {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {	
     guard let text = searchBar.text else { return }
     
     RouterManager.shared.callTVRequest(collection: .search(query: text)) { models in
@@ -79,13 +79,13 @@ extension SearchViewController: UISearchBarDelegate {
   }
 }
 
-extension SearchViewController: TableControllable {
+extension SearchTVViewController: TableControllable {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return tvList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: SearchTVTableViewCell.identifier, for: indexPath) as! SearchTVTableViewCell
     let data = tvList[indexPath.row]
     
     cell.setData(data: data)

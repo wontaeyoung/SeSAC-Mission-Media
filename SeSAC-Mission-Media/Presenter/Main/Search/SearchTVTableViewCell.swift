@@ -1,5 +1,5 @@
 //
-//  SearchTableViewCell.swift
+//  SearchTVTableViewCell.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 1/31/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SearchTableViewCell: BaseTableViewCell {
+final class SearchTVTableViewCell: BaseTableViewCell {
   
   // MARK: - UI
   private let posterImageView = PosterImageView(frame: .zero)
@@ -32,15 +32,15 @@ final class SearchTableViewCell: BaseTableViewCell {
     
     titleLabel.snp.makeConstraints {
       $0.top.trailing.equalToSuperview().inset(16)
-      $0.leading.equalTo(posterImageView.snp.trailing).offset(8)
+      $0.leading.equalTo(posterImageView.snp.trailing).offset(16)
       $0.height.equalTo(20)
     }
     
     overviewLabel.snp.makeConstraints {
       $0.top.equalTo(titleLabel.snp.bottom).offset(16)
-      $0.leading.equalTo(posterImageView.snp.trailing).offset(8)
-      $0.trailing.equalToSuperview().inset(8)
-      $0.bottom.lessThanOrEqualToSuperview().inset(8)
+      $0.leading.equalTo(posterImageView.snp.trailing).offset(16)
+      $0.trailing.equalToSuperview().inset(16)
+      $0.bottom.lessThanOrEqualToSuperview().inset(16)
     }
   }
   
@@ -54,5 +54,5 @@ final class SearchTableViewCell: BaseTableViewCell {
 }
 
 #Preview {
-  SearchTableViewCell()
+  SearchTVTableViewCell()
 }

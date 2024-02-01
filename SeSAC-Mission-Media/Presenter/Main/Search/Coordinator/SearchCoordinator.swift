@@ -25,7 +25,7 @@ final class SearchCoordinator: Coordinator {
 
 extension SearchCoordinator {
   func showSearchViewController() {
-    let viewController = SearchViewController()
+    let viewController = SearchTVViewController()
     
     self.push(viewController, animation: false)
   }
