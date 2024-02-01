@@ -7,6 +7,14 @@
 
 enum Constant {
   
+  enum AlternativeData {
+    static let text = "-"
+    static let date = "????-??-??"
+    static let imageURL = ""
+    static let id = 0
+    static let minute = 0
+  }
+  
   enum Parameter {
     enum ISO: String {
       case kor = "ko-KR"
