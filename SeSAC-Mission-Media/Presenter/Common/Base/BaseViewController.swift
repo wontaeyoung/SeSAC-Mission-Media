@@ -9,12 +9,11 @@ import UIKit
 
 class BaseViewController: UIViewController {
   
+  // MARK: - Property
   var finishableKeyboardEditing: Bool
   
-  func setHierarchy() { }
-  func setAttribute() { }
-  func setConstraint() { }
   
+  // MARK: - Initializer
   init(finishableKeyboardEditing: Bool = false) {
     self.finishableKeyboardEditing = finishableKeyboardEditing
     
@@ -25,6 +24,12 @@ class BaseViewController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  
+  // MARK: - Life Cycle
+  func setHierarchy() { }
+  func setAttribute() { }
+  func setConstraint() { }
   
   override func viewDidLoad() {
     
@@ -38,6 +43,8 @@ class BaseViewController: UIViewController {
     makeViewFinishableEditing()
   }
   
+  
+  // MARK: - Method
   private func makeViewFinishableEditing() {
     let gesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
     
