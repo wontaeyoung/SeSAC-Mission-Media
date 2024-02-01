@@ -5,8 +5,16 @@
 //  Created by 원태영 on 1/30/24.
 //
 
-struct TVResponseDTO: ResponseDTO {
+struct TVResponseDTO: DTO {
   let results: [TVDTO]
+  
+  func asModel() -> TVResponse {
+    return TVResponse(results: results.map { $0.asModel() })
+  }
+}
+
+struct TVResponse: Model {
+  let results: [TV]
 }
 
 struct TVDTO: DTO {
