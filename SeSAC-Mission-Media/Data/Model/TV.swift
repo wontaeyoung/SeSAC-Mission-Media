@@ -21,7 +21,6 @@ struct TVDTO: DTO {
   let id: Int
   let name: String
   let overview: String
-  let startDate: String
   let posterURL: String?
   
   enum CodingKeys: String, CodingKey {
@@ -35,7 +34,6 @@ struct TVDTO: DTO {
       id: id,
       name: name,
       overview: overview,
-      startDate: startDate,
       posterURL: posterURL ?? ""
     )
   }
@@ -45,6 +43,5 @@ struct TV: Model {
   let id: Int
   let name: String
   let overview: String
-  let startDate: String
   let posterURL: String
 }
