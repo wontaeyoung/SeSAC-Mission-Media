@@ -21,24 +21,24 @@ final class RouterManager {
         APIManager.shared.callRequest(
           responseType: TVResponseDTO.self,
           router: TrendRouter.trendTV(timeWindow: .week)
-        ) { tv in
-          completion(tv.results)
+        ) { response in
+          completion(response.results)
         }
         
       case .topRated:
         APIManager.shared.callRequest(
           responseType: TVResponseDTO.self,
           router: TVRouter.topRated
-        ) { tv in
-          completion(tv.results)
+        ) { response in
+          completion(response.results)
         }
         
       case .popular:
         APIManager.shared.callRequest(
           responseType: TVResponseDTO.self,
           router: TVRouter.popular
-        ) { tv in
-          completion(tv.results)
+        ) { response in
+          completion(response.results)
         }
     }
   }
@@ -53,8 +53,8 @@ final class RouterManager {
         APIManager.shared.callRequest(
           responseType: TVResponseDTO.self,
           router: SearchRouter.tv(query: query)
-        ) { tv in
-          completion(tv.results)
+        ) { response in
+          completion(response.results)
         }
         
       default:

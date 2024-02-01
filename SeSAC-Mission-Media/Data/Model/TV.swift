@@ -25,7 +25,6 @@ struct TVDTO: DTO {
   
   enum CodingKeys: String, CodingKey {
     case id, name, overview
-    case startDate = "first_air_date"
     case posterURL = "poster_path"
   }
   

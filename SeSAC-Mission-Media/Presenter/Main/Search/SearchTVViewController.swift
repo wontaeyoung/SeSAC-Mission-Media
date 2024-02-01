@@ -50,10 +50,6 @@ final class SearchTVViewController: BaseViewController {
     view.addSubviews(searchBar, resultTableView)
   }
   
-  override func setAttribute() {
-    
-  }
-  
   override func setConstraint() {
     searchBar.snp.makeConstraints {
       $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
