@@ -67,9 +67,12 @@ extension SearchTVViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {	
     guard let text = searchBar.text else { return }
     
-    RouterManager.shared.callTVRequest(collection: .search(query: text)) { models in
-      self.tvList = models
+    APIManager.shared.callRequest(
+      responseType: TVResponseDTO.self,
+      router: SearchRouter.tv(query: text)
+    ) { response in
       
+      self.tvList = response.results
       searchBar.text?.removeAll()
     }
   }

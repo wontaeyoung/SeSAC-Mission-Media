@@ -57,9 +57,35 @@ final class HomeViewController: BaseViewController {
   }
   
   override func setAttribute() {
+    
     HomeTVCollection.allCases.forEach { collection in
-      RouterManager.shared.callTVRequest(collection: collection) { models in
-        self.tvListDictionary[collection] = models
+      switch collection {
+        case .trend:
+          APIManager.shared.callRequest(
+            responseType: TVResponseDTO.self,
+            router: TrendRouter.trendTV(timeWindow: .week)
+          ) { response in
+            
+            self.tvListDictionary[collection] = response.results
+          }
+          
+        case .topRated:
+          APIManager.shared.callRequest(
+            responseType: TVResponseDTO.self,
+            router: TVRouter.topRated
+          ) { response in
+            
+            self.tvListDictionary[collection] = response.results
+          }
+          
+        case .popular:
+          APIManager.shared.callRequest(
+            responseType: TVResponseDTO.self,
+            router: TVRouter.popular
+          ) { response in
+            
+            self.tvListDictionary[collection] = response.results
+          }
       }
     }
   }
