@@ -8,14 +8,6 @@
 import UIKit
 import SnapKit
 
-enum SearchTVCollection {
-  
-  case search(query: String)
-  case detail
-  case recommend
-  case cast
-}
-
 final class SearchTVViewController: BaseViewController {
   
   // MARK: - UI
