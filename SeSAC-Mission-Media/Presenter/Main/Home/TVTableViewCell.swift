@@ -11,7 +11,7 @@ import SnapKit
 final class TVTableViewCell: BaseTableViewCell {
   
   // MARK: - UI
-  private let titleLabel = PrimaryLabel(text: nil)
+  private let titleLabel = PrimaryLabel()
   private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init()).configured {
     $0.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
   }

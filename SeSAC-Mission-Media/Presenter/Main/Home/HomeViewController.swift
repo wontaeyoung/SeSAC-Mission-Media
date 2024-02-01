@@ -51,9 +51,6 @@ final class HomeViewController: BaseViewController {
   }
   
   
-  // MARK: - Initializer
-  
-  
   // MARK: - Life Cycle
   override func setHierarchy() {
     view.addSubview(tvTableView)
@@ -72,9 +69,6 @@ final class HomeViewController: BaseViewController {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
-  
-  
-  // MARK: - Method
 }
 
 extension HomeViewController: TableControllable {

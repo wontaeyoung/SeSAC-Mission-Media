@@ -9,7 +9,7 @@ import UIKit
 
 final class SecondaryLabel: UILabel {
   
-  init(text: String?) {
+  init(text: String? = nil) {
     super.init(frame: .zero)
     
     configureView(text: text)

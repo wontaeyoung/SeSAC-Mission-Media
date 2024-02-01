@@ -13,7 +13,7 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
   
   // MARK: - UI
   private let posterImageView = PosterImageView(frame: .zero)
-  private let nameLabel = SecondaryLabel(text: nil)
+  private let nameLabel = SecondaryLabel()
   
   
   // MARK: - Life Cycle
