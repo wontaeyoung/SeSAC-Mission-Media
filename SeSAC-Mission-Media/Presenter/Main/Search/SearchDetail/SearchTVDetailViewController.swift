@@ -20,14 +20,13 @@ final class SearchTVDetailViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: SearchCoordinator?
-  private let seriesID: Int
   private var recommendationList: [TV] = []
   private var castList: [TV] = []
   
   init(seriesID: Int) {
-    self.seriesID = seriesID
-    
     super.init()
+    
+    fetchDatas(with: seriesID)
   }
   
   // MARK: - Life Cycle
@@ -36,9 +35,7 @@ final class SearchTVDetailViewController: BaseViewController {
   }
   
   override func setAttribute() {
-//    summaryView.backgroundColor = .systemRed
-//    tableView.backgroundColor = .systemBlue
-    fetchDatas(with: seriesID)
+    self.navigationItem.backButtonTitle = ""
   }
   
   override func setConstraint() {
@@ -63,6 +60,7 @@ final class SearchTVDetailViewController: BaseViewController {
       router: TVRouter.seriesDetails(seriesID: seriesID)
     ) { response in
       
+      self.navigationItem.title = response.name
       self.summaryView.setData(with: response)
     }
     

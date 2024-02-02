@@ -43,6 +43,10 @@ final class SearchTVViewController: BaseViewController {
     view.addSubviews(searchBar, resultTableView)
   }
   
+  override func setAttribute() {
+    self.navigationItem.title = "검색"
+  }
+  
   override func setConstraint() {
     searchBar.snp.makeConstraints {
       $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
