@@ -53,7 +53,7 @@ struct TVDetailDTO: DTO {
     self.startDate = try container.decodeIfPresent(String.self, forKey: .startDate) ?? alternative.date
     self.posterURL = try container.decodeIfPresent(String.self, forKey: .posterURL) ?? alternative.imageURL
     self.backdropURL = try container.decodeIfPresent(String.self, forKey: .backdropURL) ?? alternative.imageURL
-    self.runningTime = try container.decodeIfPresent(Int.self, forKey: .runningTime) ?? alternative.minute
+    self.runningTime = try container.decodeIfPresent([Int].self, forKey: .runningTime)?.first ?? alternative.minute
     self.genres = try container.decodeIfPresent([TVDetailDTO.GenreDTO].self, forKey: .genres) ?? []
     self.networks = try container.decodeIfPresent([TVDetailDTO.NetworkDTO].self, forKey: .networks) ?? []
   }
