@@ -114,7 +114,9 @@ extension SearchTVDetailViewController: CollectionControllable {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-    return collectionView.tag == .zero ? recommendationList.count : castList.count
+    return collectionView.tag - TVCollection.homeCollections.count == .zero
+    ? recommendationList.count
+    : castList.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
