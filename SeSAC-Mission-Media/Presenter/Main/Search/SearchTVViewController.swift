@@ -44,7 +44,8 @@ final class SearchTVViewController: BaseViewController {
   }
   
   override func setAttribute() {
-    self.navigationItem.title = "검색"
+    hideBackTitle()
+    navigationTitle(with: "검색")
   }
   
   override func setConstraint() {

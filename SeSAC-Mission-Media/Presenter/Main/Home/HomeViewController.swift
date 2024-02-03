@@ -68,7 +68,8 @@ final class HomeViewController: BaseViewController {
   
   override func setAttribute() {
     
-    self.navigationItem.title = "홈"
+    hideBackTitle()
+    navigationTitle(with: "홈")
     
     TVCollection.homeCollections.forEach { collection in
       switch collection {

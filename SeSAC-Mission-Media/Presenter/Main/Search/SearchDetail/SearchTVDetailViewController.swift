@@ -26,16 +26,13 @@ final class SearchTVDetailViewController: BaseViewController {
   init(seriesID: Int) {
     super.init()
     
+    hideBackTitle()
     fetchDatas(with: seriesID)
   }
   
   // MARK: - Life Cycle
   override func setHierarchy() {
     view.addSubviews(summaryView, tableView)
-  }
-  
-  override func setAttribute() {
-    self.navigationItem.backButtonTitle = ""
   }
   
   override func setConstraint() {
@@ -58,19 +55,21 @@ final class SearchTVDetailViewController: BaseViewController {
     APIManager.shared.callRequest(
       responseType: TVDetailDTO.self,
       router: TVRouter.seriesDetails(seriesID: seriesID)
-    ) { response in
+    ) { [weak self] response in
+      guard let self else { return }
       
-      self.navigationItem.title = response.name
-      self.summaryView.setData(with: response)
+      navigationTitle(with: response.name)
+      summaryView.setData(with: response)
     }
     
     group.enter()
     APIManager.shared.callRequest(
       responseType: TVResponseDTO.self,
       router: TVRouter.seriesRecommandation(seriesID: seriesID)
-    ) { response in
+    ) { [weak self] response in
+      guard let self else { return }
       
-      self.recommendationList = response.results
+      recommendationList = response.results
       group.leave()
     }
     
