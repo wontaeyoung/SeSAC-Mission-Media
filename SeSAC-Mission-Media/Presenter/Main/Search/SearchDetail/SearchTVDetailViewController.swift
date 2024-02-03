@@ -15,13 +15,14 @@ final class SearchTVDetailViewController: BaseViewController {
   private lazy var tableView = UITableView().configured {
     $0.dataSource = self
     $0.delegate = self
-    $0.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
+    $0.separatorStyle = .none
+    $0.register(CollectionTableViewCell.self, forCellReuseIdentifier: CollectionTableViewCell.identifier)
   }
   
   // MARK: - Property
   weak var coordinator: SearchCoordinator?
   private var recommendationList: [TV] = []
-  private var castList: [TV] = []
+  private var castList: [Cast] = []
   
   init(seriesID: Int) {
     super.init()
@@ -37,12 +38,12 @@ final class SearchTVDetailViewController: BaseViewController {
   
   override func setConstraint() {
     summaryView.snp.makeConstraints {
-      $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+      $0.top.equalTo(view.safeAreaLayoutGuide)
       $0.height.equalTo(300)
     }
     
     tableView.snp.makeConstraints {
-      $0.top.equalTo(summaryView.snp.bottom).offset(10)
+      $0.top.equalTo(summaryView.snp.bottom).offset(24)
       $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
     }
   }
@@ -73,6 +74,17 @@ final class SearchTVDetailViewController: BaseViewController {
       group.leave()
     }
     
+    group.enter()
+    APIManager.shared.callRequest(
+      responseType: CastResponseDTO.self,
+      router: TVRouter.seriesAggregateCredits(seriesID: seriesID)
+    ) { [weak self] response in
+      guard let self else { return }
+      
+      castList = response.results
+      group.leave()
+    }
+    
     group.notify(queue: .main) {
       self.tableView.reloadData()
     }
@@ -82,11 +94,11 @@ final class SearchTVDetailViewController: BaseViewController {
 extension SearchTVDetailViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return TVCollection.searchCollections.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: TVTableViewCell.identifier, for: indexPath) as! TVTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.identifier, for: indexPath) as! CollectionTableViewCell
     
     let collection = TVCollection.searchCollections[indexPath.row]
     
@@ -118,12 +130,23 @@ extension SearchTVDetailViewController: CollectionControllable {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TVCollectionViewCell.identifier, for: indexPath) as! TVCollectionViewCell
-    
-    let data = recommendationList[indexPath.row]
-    cell.setData(with: data)
-    
-    return cell
+    if collectionView.tag - TVCollection.homeCollections.count == .zero {
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TVCollectionViewCell.identifier, for: indexPath) as! TVCollectionViewCell
+      
+      let data = recommendationList[indexPath.row]
+      cell.setData(with: data)
+      
+      return cell
+    } else {
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.identifier, for: indexPath) as! CastCollectionViewCell
+      
+      let data = castList[indexPath.row]
+      cell.setData(with: data)
+      
+      return cell
+    }
   }
 }
 

@@ -10,6 +10,10 @@ import Foundation
 struct CastResponseDTO: DTO {
   let results: [CastDTO]
   
+  enum CodingKeys: String, CodingKey {
+    case results = "cast"
+  }
+  
   func asModel() -> CastResponse {
     return CastResponse(results: results.map { $0.asModel() })
   }
