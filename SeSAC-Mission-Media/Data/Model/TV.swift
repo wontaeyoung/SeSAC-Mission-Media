@@ -20,23 +20,17 @@ struct TVResponse: Model {
 }
 
 struct TVDTO: DTO {
+  
+  // MARK: - Property
   let id: Int
   let name: String
   let overview: String
   let posterPath: String
   
+  // MARK: - Decoding
   enum CodingKeys: String, CodingKey {
     case id, name, overview
     case posterPath = "poster_path"
-  }
-  
-  func asModel() -> TV {
-    return TV(
-      id: id,
-      name: name,
-      overview: overview,
-      posterPath: posterPath
-    )
   }
   
   init(from decoder: Decoder) throws {
@@ -47,6 +41,16 @@ struct TVDTO: DTO {
     self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
     self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? alternative.text
     self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? alternative.imagePath
+  }
+  
+  // MARK: - Method
+  func asModel() -> TV {
+    return TV(
+      id: id,
+      name: name,
+      overview: overview,
+      posterPath: posterPath
+    )
   }
 }
 

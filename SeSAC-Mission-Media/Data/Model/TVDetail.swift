@@ -76,6 +76,7 @@ struct TVDetailDTO: DTO {
     )
   }
   
+  // MARK: - SubType
   struct GenreDTO: Decodable {
     let name: String
     
