@@ -104,11 +104,10 @@ final class TVSummaryView: BaseView {
       with: CGSize(width: 100, height: 50)
     )
     
-    titleLabel.text = data.name
+    titleLabel.text = data.name.replacedEmptyToDash
     startDateLabel.text = data.startDate
-    genreLabel.text = data.genres.joined(separator: " · ")
-    runningTimeLabel.text = data.runningTime + " 분"
-    broadcasterLabel.text = data.broadcasterName
-    overviewLabel.text = data.overview
+    genreLabel.text = data.genres.joined(separator: " · ").replacedEmptyToDash
+    runningTimeLabel.text = data.runningTime.replacedEmptyToDash + " 분"
+    overviewLabel.text = data.overview.replacedEmptyToDash
   }
 }
