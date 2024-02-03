@@ -21,7 +21,7 @@ struct TVDTO: DTO {
   let id: Int
   let name: String
   let overview: String
-  let posterURL: String?
+  let posterURL: String
   
   enum CodingKeys: String, CodingKey {
     case id, name, overview
@@ -33,8 +33,18 @@ struct TVDTO: DTO {
       id: id,
       name: name,
       overview: overview,
-      posterURL: posterURL ?? ""
+      posterURL: posterURL
     )
+  }
+  
+  init(from decoder: Decoder) throws {
+    let alternative = Constant.AlternativeData.self
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+    self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? alternative.id
+    self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
+    self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? alternative.text
+    self.posterURL = try container.decodeIfPresent(String.self, forKey: .posterURL) ?? alternative.imageURL
   }
 }
 
