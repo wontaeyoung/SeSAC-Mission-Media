@@ -14,21 +14,29 @@ final class TVSummaryView: BaseView {
   // MARK: - UI
   private let posterImageView = PosterImageView(samplingHeight: 180)
   private let backgroundImageView = UIImageView().configured {
-    $0.alpha = 0.3
+    $0.alpha = 0.2
     $0.contentMode = .scaleAspectFill
   }
   private let titleLabel = PrimaryLabel()
   private let startDateLabel = PrimaryLabel()
   private let genreLabel = PrimaryLabel()
   private let runningTimeLabel = PrimaryLabel()
-  private let broadcasterLabel = SecondaryLabel()
   private let broadcasterLogoImageView = UIImageView().configured { $0.contentMode = .scaleAspectFit }
-  private let overviewLabel = TertiaryLabel().configured { $0.numberOfLines = 3 }
+  private let overviewLabel = SecondaryLabel().configured { $0.numberOfLines = 0 }
   
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    addSubviews(backgroundImageView, posterImageView, titleLabel, startDateLabel, genreLabel, runningTimeLabel, broadcasterLabel, broadcasterLogoImageView, overviewLabel)
+    addSubviews(
+      backgroundImageView,
+      posterImageView,
+      titleLabel,
+      startDateLabel,
+      genreLabel,
+      runningTimeLabel,
+      broadcasterLogoImageView,
+      overviewLabel
+    )
   }
   
   override func setConstraint() {
@@ -68,17 +76,12 @@ final class TVSummaryView: BaseView {
       $0.horizontalEdges.equalTo(titleLabel)
     }
     
-    broadcasterLabel.snp.makeConstraints {
-      $0.top.equalTo(runningTimeLabel.snp.bottom).offset(16)
-      $0.leading.equalTo(titleLabel)
-    }
-    
     broadcasterLogoImageView.snp.makeConstraints {
-      $0.centerY.equalTo(broadcasterLabel)
-      $0.leading.equalTo(broadcasterLabel.snp.trailing).offset(16)
+      $0.top.equalTo(runningTimeLabel.snp.bottom).offset(16)
+      $0.leading.equalTo(titleLabel.snp.leading)
       $0.trailing.lessThanOrEqualTo(titleLabel)
-      $0.height.equalTo(20)
-      $0.width.equalTo(broadcasterLogoImageView.snp.height).multipliedBy(2)
+      $0.height.equalTo(25)
+      $0.width.equalTo(broadcasterLogoImageView.snp.height).multipliedBy(2.5)
     }
     
     overviewLabel.snp.makeConstraints {
