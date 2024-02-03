@@ -93,18 +93,18 @@ final class TVSummaryView: BaseView {
   // MARK: - Method
   func setData(with data: TVDetail) {
     backgroundImageView.setImage(
-      from: URL(string: APIKey.TMDB.imageRequestPath + data.backdropURL),
+      from: data.backdropURL,
       with: CGSize(width: UIScreen.main.bounds.width, height: 300)
     )
     
     posterImageView.setImage(
-      from: URL(string: APIKey.TMDB.imageRequestPath + data.posterURL),
+      from: data.posterURL,
       with: posterImageView.samplingSize
     )
     
     broadcasterLogoImageView.setImage(
-      from: URL(string: APIKey.TMDB.imageRequestPath + data.broadcasterLogo),
-      with: CGSize(width: 100, height: 50)
+      from: data.broadcasterLogoURL,
+      with: CGSize(width: 25 * 2.5, height: 25)
     )
     
     titleLabel.text = data.name.replacedEmptyToDash

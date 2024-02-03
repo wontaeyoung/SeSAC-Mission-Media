@@ -5,6 +5,8 @@
 //  Created by 원태영 on 2/1/24.
 //
 
+import Foundation
+
 struct TVDetailResponseDTO: DTO {
   let results: [TVDetailDTO]
   
@@ -24,8 +26,8 @@ struct TVDetailDTO: DTO {
   let name: String
   let overview: String
   let startDate: String
-  let posterURL: String
-  let backdropURL: String
+  let posterPath: String
+  let backdropPath: String
   let runningTime: Int
   let genres: [GenreDTO]
   let networks: [NetworkDTO]
@@ -36,8 +38,8 @@ struct TVDetailDTO: DTO {
     case name
     case overview
     case startDate = "first_air_date"
-    case posterURL = "poster_path"
-    case backdropURL = "backdrop_path"
+    case posterPath = "poster_path"
+    case backdropPath = "backdrop_path"
     case runningTime = "episode_run_time"
     case genres
     case networks
@@ -51,8 +53,8 @@ struct TVDetailDTO: DTO {
     self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
     self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? alternative.text
     self.startDate = try container.decodeIfPresent(String.self, forKey: .startDate) ?? alternative.date
-    self.posterURL = try container.decodeIfPresent(String.self, forKey: .posterURL) ?? alternative.imageURL
-    self.backdropURL = try container.decodeIfPresent(String.self, forKey: .backdropURL) ?? alternative.imageURL
+    self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? alternative.imagePath
+    self.backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath) ?? alternative.imagePath
     self.runningTime = try container.decodeIfPresent([Int].self, forKey: .runningTime)?.first ?? alternative.minute
     self.genres = try container.decodeIfPresent([GenreDTO].self, forKey: .genres) ?? []
     self.networks = try container.decodeIfPresent([NetworkDTO].self, forKey: .networks) ?? []
@@ -65,12 +67,12 @@ struct TVDetailDTO: DTO {
       name: name,
       overview: overview,
       startDate: startDate,
-      posterURL: posterURL,
-      backdropURL: backdropURL,
+      posterPath: posterPath,
+      backdropPath: backdropPath,
       runningTime: runningTime == .zero ? "" : String(runningTime),
       genres: genres.map { $0.name },
       broadcasterName: networks.first?.name ?? Constant.AlternativeData.text,
-      broadcasterLogo: networks.first?.logoURL ?? Constant.AlternativeData.imageURL
+      broadcasterLogoPath: networks.first?.logoPath ?? Constant.AlternativeData.imagePath
     )
   }
   
@@ -89,11 +91,11 @@ struct TVDetailDTO: DTO {
   
   struct NetworkDTO: Decodable {
     let name: String
-    let logoURL: String
+    let logoPath: String
     
     enum CodingKeys: String, CodingKey {
       case name
-      case logoURL = "logo_path"
+      case logoPath = "logo_path"
     }
     
     init(from decoder: Decoder) throws {
@@ -101,7 +103,7 @@ struct TVDetailDTO: DTO {
       let container: KeyedDecodingContainer<CodingKeys> = try decoder.container(keyedBy: CodingKeys.self)
       
       self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
-      self.logoURL = try container.decodeIfPresent(String.self, forKey: .logoURL) ?? alternative.imageURL
+      self.logoPath = try container.decodeIfPresent(String.self, forKey: .logoPath) ?? alternative.imagePath
     }
   }
 }
@@ -111,11 +113,23 @@ struct TVDetail: Model {
   let name: String
   let overview: String
   let startDate: String
-  let posterURL: String
-  let backdropURL: String
+  let posterPath: String
+  let backdropPath: String
   let runningTime: String
   let genres: [String]
   let broadcasterName: String
-  let broadcasterLogo: String
+  let broadcasterLogoPath: String
+  
+  var posterURL: URL? {
+    return URL(string: APIKey.TMDB.imageRequestPath + posterPath)
+  }
+  
+  var backdropURL: URL? {
+    return URL(string: APIKey.TMDB.imageRequestPath + backdropPath)
+  }
+  
+  var broadcasterLogoURL: URL? {
+    return URL(string: APIKey.TMDB.imageRequestPath + broadcasterLogoPath)
+  }
 }
 

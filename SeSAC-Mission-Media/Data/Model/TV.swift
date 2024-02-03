@@ -5,6 +5,8 @@
 //  Created by 원태영 on 1/30/24.
 //
 
+import Foundation
+
 struct TVResponseDTO: DTO {
   let results: [TVDTO]
   
@@ -21,11 +23,11 @@ struct TVDTO: DTO {
   let id: Int
   let name: String
   let overview: String
-  let posterURL: String
+  let posterPath: String
   
   enum CodingKeys: String, CodingKey {
     case id, name, overview
-    case posterURL = "poster_path"
+    case posterPath = "poster_path"
   }
   
   func asModel() -> TV {
@@ -33,7 +35,7 @@ struct TVDTO: DTO {
       id: id,
       name: name,
       overview: overview,
-      posterURL: posterURL
+      posterPath: posterPath
     )
   }
   
@@ -44,7 +46,7 @@ struct TVDTO: DTO {
     self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? alternative.id
     self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
     self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? alternative.text
-    self.posterURL = try container.decodeIfPresent(String.self, forKey: .posterURL) ?? alternative.imageURL
+    self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? alternative.imagePath
   }
 }
 
@@ -52,5 +54,9 @@ struct TV: Model {
   let id: Int
   let name: String
   let overview: String
-  let posterURL: String
+  let posterPath: String
+  
+  var posterURL: URL? {
+    return URL(string: APIKey.TMDB.imageRequestPath + posterPath)
+  }
 }
