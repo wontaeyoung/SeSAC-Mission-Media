@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+/// TV 포스터 이미지와 타이틀을 표시하는 컬렉션 셀
 final class TVCollectionViewCell: BaseCollectionViewCell {
   
   // MARK: - UI
@@ -40,4 +41,3 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
     self.nameLabel.text = data.name
   }
 }
-

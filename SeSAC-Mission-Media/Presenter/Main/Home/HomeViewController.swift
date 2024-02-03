@@ -34,7 +34,7 @@ enum TVCollection: Int, CaseIterable {
         return "비슷한 TV 프로그램"
         
       case .cast:
-        return "출연자"
+        return "출연진"
     }
   }
   
@@ -50,7 +50,7 @@ final class HomeViewController: BaseViewController {
   private lazy var tvTableView = UITableView().configured {
     $0.delegate = self
     $0.dataSource = self
-    $0.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
+    $0.register(CollectionTableViewCell.self, forCellReuseIdentifier: CollectionTableViewCell.identifier)
   }
   
   // MARK: - Property
@@ -119,7 +119,7 @@ extension HomeViewController: TableControllable {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: TVTableViewCell.identifier, for: indexPath) as! TVTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.identifier, for: indexPath) as! CollectionTableViewCell
     
     guard let collection = TVCollection(rawValue: indexPath.row) else {
       return cell
