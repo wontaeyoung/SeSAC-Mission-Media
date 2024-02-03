@@ -5,7 +5,13 @@
 //  Created by 원태영 on 1/30/24.
 //
 
+import Foundation
+
 enum Constant {
+  
+  enum UI {
+    static let collectionHeight: CGFloat = 180
+  }
   
   enum AlternativeData {
     static let text = "-"

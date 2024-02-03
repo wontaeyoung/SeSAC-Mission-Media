@@ -102,7 +102,7 @@ extension SearchTVDetailViewController: TableControllable {
 extension SearchTVDetailViewController: CollectionControllable {
   func makeCollectionLayout() -> UICollectionViewFlowLayout {
     return UICollectionViewFlowLayout().configured {
-      $0.itemSize = .init(width: 120, height: 160)
+      $0.itemSize = .init(width: 120, height: Constant.UI.collectionHeight)
       $0.minimumLineSpacing = 10
       $0.minimumInteritemSpacing = 0
       $0.scrollDirection = .horizontal

@@ -12,7 +12,7 @@ final class TVSummaryView: BaseView {
   
   
   // MARK: - UI
-  private let posterImageView = PosterImageView(samplingHeight: 180)
+  private let posterImageView = PosterImageView(samplingHeight: Constant.UI.collectionHeight)
   private let backgroundImageView = UIImageView().configured {
     $0.alpha = 0.2
     $0.contentMode = .scaleAspectFill
