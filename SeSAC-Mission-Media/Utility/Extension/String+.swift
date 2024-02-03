@@ -6,7 +6,7 @@
 //
 
 extension String {
-  var replacedEmptyToDash: String {
+  var replaceEmptyByDash: String {
     return self.isEmpty ? "-" : self
   }
 }
