@@ -34,7 +34,7 @@ final class TVTableViewCell: BaseTableViewCell {
     }
     
     collectionView.snp.makeConstraints {
-      $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+      $0.top.equalTo(titleLabel.snp.bottom)
       $0.horizontalEdges.bottom.equalToSuperview()
       $0.height.equalTo(196)
     }
