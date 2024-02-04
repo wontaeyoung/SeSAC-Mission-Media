@@ -17,10 +17,10 @@ final class TVSummaryView: BaseView {
     $0.alpha = 0.2
     $0.contentMode = .scaleAspectFill
   }
-  private let titleLabel = PrimaryLabel()
-  private let startDateLabel = PrimaryLabel()
-  private let genreLabel = PrimaryLabel()
-  private let runningTimeLabel = PrimaryLabel()
+  private let titleLabel = PrimaryLabel().configured { $0.numberOfLines = 2 }
+  private let startDateLabel = SecondaryLabel()
+  private let genreLabel = SecondaryLabel().configured { $0.numberOfLines = 2 }
+  private let runningTimeLabel = SecondaryLabel()
   private let broadcasterLogoImageView = UIImageView().configured { $0.contentMode = .scaleAspectFit }
   private let overviewLabel = SecondaryLabel().configured { $0.numberOfLines = 0 }
   
