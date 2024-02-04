@@ -29,6 +29,7 @@ final class SearchTVViewController: BaseViewController {
     $0.register(SearchTVTableViewCell.self, forCellReuseIdentifier: SearchTVTableViewCell.identifier)
   }
   
+  
   // MARK: - Property
   weak var coordinator: SearchCoordinator?
   private var tvList: [TV] = [] {
@@ -65,6 +66,8 @@ extension SearchTVViewController: UISearchBarDelegate {
   
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     guard let text = searchBar.text else { return }
+    
+    view.endEditing(true)
     
     APIManager.shared.callRequest(
       responseType: TVResponseDTO.self,
