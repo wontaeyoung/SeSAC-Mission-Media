@@ -102,5 +102,6 @@ extension SearchTVViewController: TableControllable {
     let data = tvList[indexPath.row]
     
     coordinator?.combineTVDetailFlow(with: data.id)
+    view.endEditing(true)
   }
 }
