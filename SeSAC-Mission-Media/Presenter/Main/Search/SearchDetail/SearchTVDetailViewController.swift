@@ -94,16 +94,19 @@ final class SearchTVDetailViewController: BaseViewController {
 extension SearchTVDetailViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return TVCollection.searchCollections.count
+    return Collection.Search.allCases.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.identifier, for: indexPath) as! CollectionTableViewCell
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: CollectionTableViewCell.identifier,
+      for: indexPath
+    ) as! CollectionTableViewCell
     
-    let collection = TVCollection.searchCollections[indexPath.row]
+    let collection = Collection.Search.allCases[indexPath.row]
     
     cell.setDelegate(with: self)
-    cell.setData(tvCollection: collection)
+    cell.setData(collection: collection)
     cell.setCollectionLayout(with: makeCollectionLayout())
     cell.reload()
     

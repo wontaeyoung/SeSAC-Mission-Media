@@ -8,6 +8,44 @@
 import UIKit
 import SnapKit
 
+enum Collection {
+  
+  enum Home: DisplayableCollection {
+    case trend
+    case topRated
+    case popular
+    
+    var title: String {
+      switch self {
+        case .trend:
+          return "트렌디한 TV 프로그램"
+          
+        case .topRated:
+          return "별점이 높은 TV 프로그램"
+          
+        case .popular:
+          return "인기있는 TV 프로그램"
+      }
+    }
+  }
+  
+  enum Search: DisplayableCollection {
+    case recommend
+    case cast
+    
+    var title: String {
+      switch self {
+        case .recommend:
+          return "비슷한 TV 프로그램"
+          
+        case .cast:
+          return "출연진"
+      }
+    }
+  }
+}
+
+
 enum TVCollection: Int, CaseIterable {
   
   case trend = 0
@@ -115,11 +153,14 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return TVCollection.homeCollections.count
+    return Collection.Home.allCases.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.identifier, for: indexPath) as! CollectionTableViewCell
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: CollectionTableViewCell.identifier,
+      for: indexPath
+    ) as! CollectionTableViewCell
     
     guard let collection = TVCollection(rawValue: indexPath.row) else {
       return cell
@@ -154,7 +195,10 @@ extension HomeViewController: CollectionControllable {
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TVCollectionViewCell.identifier, for: indexPath) as! TVCollectionViewCell
+    let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: TVCollectionViewCell.identifier,
+      for: indexPath
+    ) as! TVCollectionViewCell
     
     guard 
       let collection = TVCollection(rawValue: collectionView.tag),

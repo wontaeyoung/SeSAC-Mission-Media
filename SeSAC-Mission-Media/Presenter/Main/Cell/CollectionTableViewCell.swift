@@ -55,9 +55,13 @@ final class CollectionTableViewCell: BaseTableViewCell {
     self.collectionView.dataSource = controller
   }
   
-  func setData(tvCollection: TVCollection) {
-    titleLabel.text = tvCollection.title
-    collectionView.tag = tvCollection.tag
+  /// Swift 5.6부터 프로토콜을 파라미터 타입에 쓰려면 Opaque Type 키워드(soem, any)가 필요함
+  /// Swift 6부터는 Opaque Type으로 명시하지 않으면 에러가 발생한다고 한다.
+  /// Swift 5.9인 지금도 any를 명시하지 않고 existential type으로 사용하면 any를 명시하라고 컴파일 에러가 발생하는데...?
+  /// 5.7 ~ 5.9 사이에 업데이트가 있었는지 찾아봤는데 관련 내용을 찾기가 어렵다...
+  func setData(collection: some DisplayableCollection) {
+    titleLabel.text = collection.title
+    collectionView.tag = collection.tag
   }
   
   func setCollectionLayout(with layout: UICollectionViewFlowLayout) {
