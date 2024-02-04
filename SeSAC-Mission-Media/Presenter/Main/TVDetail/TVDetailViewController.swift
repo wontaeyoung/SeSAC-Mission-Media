@@ -153,4 +153,15 @@ extension TVDetailViewController: CollectionControllable {
         return cell
     }
   }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard 
+      Collection.Search.recommend.tag == collectionView.tag,
+      let data = recommendationList[at: indexPath.row]
+    else {
+      return
+    }
+    
+    coordinator?.showTVDetailViewController(with: data.id)
+  }
 }
