@@ -46,7 +46,7 @@ final class SearchTVTableViewCell: BaseTableViewCell {
   
   
   // MARK: - Method
-  func setData(data: TV) {
+  func setData(with data: TV) {
     posterImageView.setImage(from: data.posterURL, with: posterImageView.samplingSize)
     titleLabel.text = data.name
     overviewLabel.text = data.overview

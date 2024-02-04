@@ -59,6 +59,8 @@ final class CollectionTableViewCell: BaseTableViewCell {
   /// Swift 6부터는 Opaque Type으로 명시하지 않으면 에러가 발생한다고 한다.
   /// Swift 5.9인 지금도 any를 명시하지 않고 existential type으로 사용하면 any를 명시하라고 컴파일 에러가 발생하는데...?
   /// 5.7 ~ 5.9 사이에 업데이트가 있었는지 찾아봤는데 관련 내용을 찾기가 어렵다...
+  /// 기존의 existential type이 다이나믹 디스패치로 인해 성능 손해가 있는데도, 파라미터의 타입 자리만 읽고 Concrete Type인지 Exsitential Type인지 개발자가 직관적으로 알기 힘들었기 때문인 것 같음
+  /// -> 외국 자료에서 "Exsitential Type에 너무 쉽게 접근할 수 있다"라는 문장이 있는거 보니 비슷한 취지로 변경된 것 같다.
   func setData(collection: some DisplayableCollection) {
     titleLabel.text = collection.title
     collectionView.tag = collection.tag

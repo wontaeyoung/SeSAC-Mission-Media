@@ -62,7 +62,8 @@ final class SearchTVViewController: BaseViewController {
 }
 
 extension SearchTVViewController: UISearchBarDelegate {
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {	
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     guard let text = searchBar.text else { return }
     
     APIManager.shared.callRequest(
@@ -77,15 +78,19 @@ extension SearchTVViewController: UISearchBarDelegate {
 }
 
 extension SearchTVViewController: TableControllable {
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return tvList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: SearchTVTableViewCell.identifier, for: indexPath) as! SearchTVTableViewCell
-    let data = tvList[indexPath.row]
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: SearchTVTableViewCell.identifier,
+      for: indexPath
+    ) as! SearchTVTableViewCell
     
-    cell.setData(data: data)
+    let data = tvList[indexPath.row]
+    cell.setData(with: data)
     
     return cell
   }

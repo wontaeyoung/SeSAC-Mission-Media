@@ -8,79 +8,6 @@
 import UIKit
 import SnapKit
 
-enum Collection {
-  
-  enum Home: DisplayableCollection {
-    case trend
-    case topRated
-    case popular
-    
-    var title: String {
-      switch self {
-        case .trend:
-          return "트렌디한 TV 프로그램"
-          
-        case .topRated:
-          return "별점이 높은 TV 프로그램"
-          
-        case .popular:
-          return "인기있는 TV 프로그램"
-      }
-    }
-  }
-  
-  enum Search: DisplayableCollection {
-    case recommend
-    case cast
-    
-    var title: String {
-      switch self {
-        case .recommend:
-          return "비슷한 TV 프로그램"
-          
-        case .cast:
-          return "출연진"
-      }
-    }
-  }
-}
-
-
-enum TVCollection: Int, CaseIterable {
-  
-  case trend = 0
-  case topRated
-  case popular
-  case recommend
-  case cast
-  
-  static let homeCollections: [Self] = [.trend, .topRated, .popular]
-  static let searchCollections: [Self] = [.recommend, .cast]
-  
-  var title: String {
-    switch self {
-      case .trend:
-        return "트렌디한 TV 프로그램"
-        
-      case .topRated:
-        return "별점이 높은 TV 프로그램"
-        
-      case .popular:
-        return "인기있는 TV 프로그램"
-        
-      case .recommend:
-        return "비슷한 TV 프로그램"
-        
-      case .cast:
-        return "출연진"
-    }
-  }
-  
-  var tag: Int {
-    return self.rawValue
-  }
-}
-
 final class HomeViewController: BaseViewController {
   
   
@@ -92,7 +19,7 @@ final class HomeViewController: BaseViewController {
   }
   
   // MARK: - Property
-  private var tvListDictionary: [TVCollection: [TV]] = [:] {
+  private var tvListDictionary: [Collection.Home: [TV]] = [:] {
     didSet {
       tvTableView.reloadData()
     }
@@ -105,11 +32,10 @@ final class HomeViewController: BaseViewController {
   }
   
   override func setAttribute() {
-    
     hideBackTitle()
     navigationTitle(with: "홈")
     
-    TVCollection.homeCollections.forEach { collection in
+    Collection.Home.allCases.forEach { collection in
       switch collection {
         case .trend:
           APIManager.shared.callRequest(
@@ -137,8 +63,6 @@ final class HomeViewController: BaseViewController {
             
             self.tvListDictionary[collection] = response.results
           }
-          
-        default: break
       }
     }
   }
@@ -157,17 +81,14 @@ extension HomeViewController: TableControllable {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let collection = Collection.Home.allCases[indexPath.row]
+    
     let cell = tableView.dequeueReusableCell(
       withIdentifier: CollectionTableViewCell.identifier,
       for: indexPath
     ) as! CollectionTableViewCell
-    
-    guard let collection = TVCollection(rawValue: indexPath.row) else {
-      return cell
-    }
-    
     cell.setDelegate(with: self)
-    cell.setData(tvCollection: collection)
+    cell.setData(collection: collection)
     // 이거 외부에서 주입하면 reload 연산량이 올라가서 비효율적인지 확인 필요함
     cell.setCollectionLayout(with: makeCollectionLayout())
     cell.reload()
@@ -177,6 +98,7 @@ extension HomeViewController: TableControllable {
 }
 
 extension HomeViewController: CollectionControllable {
+  
   func makeCollectionLayout() -> UICollectionViewFlowLayout {
     return UICollectionViewFlowLayout().configured {
       $0.itemSize = .init(width: 120, height: Constant.UI.collectionHeight)
@@ -187,11 +109,14 @@ extension HomeViewController: CollectionControllable {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    guard let collection = TVCollection(rawValue: collectionView.tag) else {
+    guard
+      let collection = Collection.Home.allCases[at: collectionView.tag],
+      let list = tvListDictionary[collection]
+    else {
       return 0
     }
     
-    return tvListDictionary[collection]?.count ?? 0
+    return list.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -200,9 +125,10 @@ extension HomeViewController: CollectionControllable {
       for: indexPath
     ) as! TVCollectionViewCell
     
-    guard 
-      let collection = TVCollection(rawValue: collectionView.tag),
-      let data = tvListDictionary[collection]?[indexPath.row]
+    guard
+      let collection = Collection.Home.allCases[at: collectionView.tag],
+      let list = tvListDictionary[collection],
+      let data = list[at: indexPath.row]
     else {
       return cell
     }

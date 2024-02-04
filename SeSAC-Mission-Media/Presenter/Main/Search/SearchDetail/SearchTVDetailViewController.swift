@@ -98,13 +98,13 @@ extension SearchTVDetailViewController: TableControllable {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    let collection = Collection.Search.allCases[indexPath.row]
+    
     let cell = tableView.dequeueReusableCell(
       withIdentifier: CollectionTableViewCell.identifier,
       for: indexPath
     ) as! CollectionTableViewCell
-    
-    let collection = Collection.Search.allCases[indexPath.row]
-    
     cell.setDelegate(with: self)
     cell.setData(collection: collection)
     cell.setCollectionLayout(with: makeCollectionLayout())
@@ -115,6 +115,7 @@ extension SearchTVDetailViewController: TableControllable {
 }
 
 extension SearchTVDetailViewController: CollectionControllable {
+  
   func makeCollectionLayout() -> UICollectionViewFlowLayout {
     return UICollectionViewFlowLayout().configured {
       $0.itemSize = .init(width: 120, height: Constant.UI.collectionHeight)
@@ -125,31 +126,32 @@ extension SearchTVDetailViewController: CollectionControllable {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-    return collectionView.tag - TVCollection.homeCollections.count == .zero
-    ? recommendationList.count
-    : castList.count
+    return collectionView.tag == .zero ? recommendationList.count : castList.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-    if collectionView.tag - TVCollection.homeCollections.count == .zero {
-      
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TVCollectionViewCell.identifier, for: indexPath) as! TVCollectionViewCell
-      
-      let data = recommendationList[indexPath.row]
-      cell.setData(with: data)
-      
-      return cell
-    } else {
-      
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.identifier, for: indexPath) as! CastCollectionViewCell
-      
-      let data = castList[indexPath.row]
-      cell.setData(with: data)
-      
-      return cell
+    switch collectionView.tag == .zero {
+      case true:
+        let cell = collectionView.dequeueReusableCell(
+          withReuseIdentifier: TVCollectionViewCell.identifier,
+          for: indexPath
+        ) as! TVCollectionViewCell
+        
+        let data = recommendationList[indexPath.row]
+        cell.setData(with: data)
+        
+        return cell
+        
+      case false:
+        let cell = collectionView.dequeueReusableCell(
+          withReuseIdentifier: CastCollectionViewCell.identifier,
+          for: indexPath
+        ) as! CastCollectionViewCell
+        
+        let data = castList[indexPath.row]
+        cell.setData(with: data)
+        
+        return cell
     }
   }
 }
-
