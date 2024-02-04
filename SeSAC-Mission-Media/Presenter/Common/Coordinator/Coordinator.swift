@@ -49,6 +49,7 @@ extension Coordinator {
   @MainActor
   func end() {
     self.emptyOut()
+    self.popToRoot()
     self.delegate?.coordinatorDidEnd(self)
   }
   
@@ -74,7 +75,6 @@ extension Coordinator {
   }
   
   func emptyOut() {
-    self.navigationController.viewControllers.removeAll()
     self.childCoordinators.removeAll()
   }
   

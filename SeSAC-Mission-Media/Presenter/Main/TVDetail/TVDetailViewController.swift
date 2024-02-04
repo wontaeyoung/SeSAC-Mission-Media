@@ -29,6 +29,7 @@ final class TVDetailViewController: BaseViewController {
     
     hideBackTitle()
     fetchDatas(with: seriesID)
+    setEmtpyOutBarButton()
   }
   
   // MARK: - Life Cycle
@@ -49,7 +50,7 @@ final class TVDetailViewController: BaseViewController {
   
   
   // MARK: - Method
-  func fetchDatas(with seriesID: Int) {
+  private func fetchDatas(with seriesID: Int) {
     let group = DispatchGroup()
     
     APIManager.shared.callRequest(
@@ -87,6 +88,19 @@ final class TVDetailViewController: BaseViewController {
     group.notify(queue: .main) {
       self.tableView.reloadData()
     }
+  }
+  
+  private func setEmtpyOutBarButton() {
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem().configured {
+      $0.title = "처음으로"
+      $0.style = .plain
+      $0.target = self
+      $0.action = #selector(emptyOut)
+    }
+  }
+  
+  @objc private func emptyOut() {
+    coordinator?.end()
   }
 }
 

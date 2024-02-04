@@ -35,9 +35,16 @@ extension SearchCoordinator {
   func combineTVDetailFlow(with seriesID: Int) {
     let coordinator = TVDetailCoordinator(self.navigationController)
     coordinator.setData(with: seriesID)
+    coordinator.delegate = self
     self.addChild(coordinator)
     
     coordinator.start()
   }
 }
 
+extension SearchCoordinator: CoordinatorDelegate {
+  
+  func coordinatorDidEnd(_ childCoordinator: Coordinator) {
+    self.emptyOut()
+  }
+}
