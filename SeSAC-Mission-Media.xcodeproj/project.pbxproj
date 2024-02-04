@@ -251,14 +251,14 @@
 		6E51484D2B68EC3000D5E3E0 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				6E51484E2B68EC3A00D5E3E0 /* Configurator+.swift */,
-				6E51487F2B6952D300D5E3E0 /* UIView.swift */,
 				6E5148992B6A286900D5E3E0 /* AFError+.swift */,
+				6E9520E12B6FDE4800AFED18 /* Array+.swift */,
+				6E51484E2B68EC3A00D5E3E0 /* Configurator+.swift */,
+				6E9520D62B6E758500AFED18 /* String+.swift */,
 				6E51489D2B6A2A7700D5E3E0 /* UIAlertController+.swift */,
 				6EB693022B6BC68F00EFA959 /* UIImageView+.swift */,
-				6E9520D62B6E758500AFED18 /* String+.swift */,
+				6E51487F2B6952D300D5E3E0 /* UIView.swift */,
 				6E9520D82B6E766500AFED18 /* UIViewController+.swift */,
-				6E9520E12B6FDE4800AFED18 /* Array+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -289,9 +289,9 @@
 		6E51485D2B6919FC00D5E3E0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				6E9520E62B6FE29F00AFED18 /* TabBar */,
 				6E9520DC2B6E8D6A00AFED18 /* Cell */,
 				6EB692E32B6B16C200EFA959 /* TVDetail */,
-				6E9520E62B6FE29F00AFED18 /* TabBar */,
 			);
 			path = Main;
 			sourceTree = "<group>";

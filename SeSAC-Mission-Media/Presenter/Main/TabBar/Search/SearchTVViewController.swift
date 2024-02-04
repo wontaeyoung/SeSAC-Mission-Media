@@ -8,6 +8,11 @@
 import UIKit
 import SnapKit
 
+// TODO: -
+/// 검색 결과 페이지네이션 적용
+/// 워크쓰루 뷰 구현
+/// Cast Detail API 연결해서 인물 탭하면 디테일 뷰 연결
+/// 비슷한 TV 프로그램, 출연진 데이터 없을 때 hidden 처리
 final class SearchTVViewController: BaseViewController {
   
   // MARK: - UI
