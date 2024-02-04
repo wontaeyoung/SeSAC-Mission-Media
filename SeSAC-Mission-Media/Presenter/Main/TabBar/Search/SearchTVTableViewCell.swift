@@ -18,6 +18,13 @@ final class SearchTVTableViewCell: BaseTableViewCell {
   }
   
   
+  // MARK: - Initializer
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    self.selectionStyle = .none
+  }
+  
   // MARK: - Life Cycle
   override func setHierarchy() {
     contentView.addSubviews(posterImageView, titleLabel, overviewLabel)
