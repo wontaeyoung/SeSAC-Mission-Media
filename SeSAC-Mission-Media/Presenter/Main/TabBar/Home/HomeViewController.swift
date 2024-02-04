@@ -19,6 +19,7 @@ final class HomeViewController: BaseViewController {
   }
   
   // MARK: - Property
+  weak var coordinator: HomeCoordinator?
   private var tvListDictionary: [Collection.Home: [TV]] = [:] {
     didSet {
       tvTableView.reloadData()
@@ -136,5 +137,17 @@ extension HomeViewController: CollectionControllable {
     cell.setData(with: data)
     
     return cell
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard
+      let collection = Collection.Home.allCases[at: collectionView.tag],
+      let list = tvListDictionary[collection],
+      let data = list[at: indexPath.row]
+    else {
+      return
+    }
+    
+    coordinator?.combineTVDetailFlow(with: data.id)
   }
 }

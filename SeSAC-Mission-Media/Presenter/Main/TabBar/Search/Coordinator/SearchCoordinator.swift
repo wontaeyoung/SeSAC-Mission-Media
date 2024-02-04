@@ -31,11 +31,13 @@ extension SearchCoordinator {
     self.push(viewController, animation: false)
   }
   
-  func showSearchDetailViewController(with seriesID: Int) {
-    let viewController = SearchTVDetailViewController(seriesID: seriesID)
-    viewController.coordinator = self
+  @MainActor
+  func combineTVDetailFlow(with seriesID: Int) {
+    let coordinator = TVDetailCoordinator(self.navigationController)
+    coordinator.setData(with: seriesID)
+    self.addChild(coordinator)
     
-    self.push(viewController)
+    coordinator.start()
   }
 }
 

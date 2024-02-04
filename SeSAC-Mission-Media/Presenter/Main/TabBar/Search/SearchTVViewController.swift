@@ -98,6 +98,6 @@ extension SearchTVViewController: TableControllable {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let data = tvList[indexPath.row]
     
-    coordinator?.showSearchDetailViewController(with: data.id)
+    coordinator?.combineTVDetailFlow(with: data.id)
   }
 }

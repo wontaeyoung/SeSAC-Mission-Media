@@ -26,7 +26,17 @@ final class HomeCoordinator: Coordinator {
 extension HomeCoordinator {
   func showHomeViewController() {
     let viewController = HomeViewController()
+    viewController.coordinator = self
     
     self.push(viewController, animation: false)
+  }
+  
+  @MainActor
+  func combineTVDetailFlow(with seriesID: Int) {
+    let coordinator = TVDetailCoordinator(self.navigationController)
+    coordinator.setData(with: seriesID)
+    self.addChild(coordinator)
+    
+    coordinator.start()
   }
 }
