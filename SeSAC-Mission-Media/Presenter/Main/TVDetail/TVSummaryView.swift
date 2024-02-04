@@ -42,6 +42,7 @@ final class TVSummaryView: BaseView {
   override func setConstraint() {
     self.snp.makeConstraints {
       $0.width.equalTo(UIScreen.main.bounds.width)
+      $0.height.lessThanOrEqualTo(UIScreen.main.bounds.height * 0.5)
     }
     
     backgroundImageView.snp.makeConstraints {
@@ -87,6 +88,7 @@ final class TVSummaryView: BaseView {
     overviewLabel.snp.makeConstraints {
       $0.top.equalTo(posterImageView.snp.bottom).offset(16)
       $0.horizontalEdges.equalToSuperview().inset(16)
+      $0.bottom.equalToSuperview()
     }
   }
   

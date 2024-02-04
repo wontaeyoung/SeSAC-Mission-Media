@@ -1,5 +1,5 @@
 //
-//  SearchTVDetailViewController.swift
+//  TVDetailViewController.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 2/1/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SearchTVDetailViewController: BaseViewController {
+final class TVDetailViewController: BaseViewController {
   
   // MARK: - UI
   private let summaryView = TVSummaryView()
@@ -20,7 +20,7 @@ final class SearchTVDetailViewController: BaseViewController {
   }
   
   // MARK: - Property
-  weak var coordinator: SearchCoordinator?
+  weak var coordinator: TVDetailCoordinator?
   private var recommendationList: [TV] = []
   private var castList: [Cast] = []
   
@@ -37,13 +37,12 @@ final class SearchTVDetailViewController: BaseViewController {
   }
   
   override func setConstraint() {
-    summaryView.snp.makeConstraints {
-      $0.top.equalTo(view.safeAreaLayoutGuide)
-      $0.height.equalTo(300)
+    summaryView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide)
     }
     
     tableView.snp.makeConstraints {
-      $0.top.equalTo(summaryView.snp.bottom).offset(24)
+      $0.top.equalTo(summaryView.snp.bottom).offset(32)
       $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
     }
   }
@@ -91,7 +90,7 @@ final class SearchTVDetailViewController: BaseViewController {
   }
 }
 
-extension SearchTVDetailViewController: TableControllable {
+extension TVDetailViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return Collection.Search.allCases.count
@@ -114,7 +113,7 @@ extension SearchTVDetailViewController: TableControllable {
   }
 }
 
-extension SearchTVDetailViewController: CollectionControllable {
+extension TVDetailViewController: CollectionControllable {
   
   func makeCollectionLayout() -> UICollectionViewFlowLayout {
     return UICollectionViewFlowLayout().configured {
