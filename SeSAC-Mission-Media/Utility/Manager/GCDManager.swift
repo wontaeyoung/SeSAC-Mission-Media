@@ -19,4 +19,16 @@ final class GCD {
       work()
     }
   }
+  
+  static func main(after time: Double, work: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+      work()
+    }
+  }
+  
+  static func global(after time: Double, work: @escaping () -> Void) {
+    DispatchQueue.global().asyncAfter(deadline: .now() + time) {
+      work()
+    }
+  }
 }
