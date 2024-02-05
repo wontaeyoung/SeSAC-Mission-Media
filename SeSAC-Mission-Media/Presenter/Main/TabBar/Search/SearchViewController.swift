@@ -150,7 +150,13 @@ extension SearchViewController: UISearchBarDelegate {
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     debouncer.excute(in: .global) { [weak self] in
-      guard let self, currentQuery != searchText else { return }
+      guard
+        let self,
+        searchText.isEmpty == false,
+        currentQuery != searchText
+      else {
+        return
+      }
       
       APIManager.shared.callRequest(
         responseType: TVResponseDTO.self,
