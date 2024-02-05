@@ -1,5 +1,5 @@
 //
-//  SearchTVViewController.swift
+//  SearchViewController.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 1/31/24.
@@ -13,7 +13,7 @@ import SnapKit
 /// 워크쓰루 뷰 구현
 /// Cast Detail API 연결해서 인물 탭하면 디테일 뷰 연결
 /// 비슷한 TV 프로그램, 출연진 데이터 없을 때 hidden 처리
-final class SearchTVViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
   
   // MARK: - UI
   private lazy var searchBar = UISearchBar().configured {
@@ -27,6 +27,11 @@ final class SearchTVViewController: BaseViewController {
     $0.spellCheckingType = .no
     $0.delegate = self
   }
+  
+  private lazy var searchMenu = UIMenu(children: [
+    makeAction(with: .content),
+    makeAction(with: .person)
+  ])
   
   private lazy var resultTableView = UITableView().configured {
     $0.delegate = self
@@ -43,6 +48,12 @@ final class SearchTVViewController: BaseViewController {
     }
   }
   
+  private var currentSearchMenu: SearchMenu = .content {
+    didSet {
+      updateNavigationTitle(with: currentSearchMenu)
+      updateSearchBarPlaceholder(with: currentSearchMenu)
+    }
+  }
   
   // MARK: - Life Cycle
   override func setHierarchy() {
@@ -51,7 +62,8 @@ final class SearchTVViewController: BaseViewController {
   
   override func setAttribute() {
     hideBackTitle()
-    navigationTitle(with: "검색")
+    navigationTitle(with: currentSearchMenu.title)
+    setSearchMenuBarButton()
   }
   
   override func setConstraint() {
@@ -65,9 +77,69 @@ final class SearchTVViewController: BaseViewController {
       $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
     }
   }
+  
+  // MARK: - Method
+  private func setSearchMenuBarButton() {
+    let barButton = UIBarButtonItem(
+      title: currentSearchMenu.title,
+      image: UIImage(systemName: "ellipsis"),
+      menu: searchMenu
+    )
+    
+    navigationItem.setRightBarButton(barButton, animated: true)
+  }
+  
+  private func updateNavigationTitle(with menu: SearchMenu) {
+    navigationItem.title = menu.title
+  }
+  
+  private func updateSearchBarPlaceholder(with menu: SearchMenu) {
+    switch menu {
+      case .content:
+        searchBar.placeholder = "프로그램 이름을 검색하세요"
+        
+      case .person:
+        searchBar.placeholder = "배우 이름을 검색하세요"
+    }
+  }
 }
 
-extension SearchTVViewController: UISearchBarDelegate {
+extension SearchViewController {
+  
+  enum SearchMenu: CaseIterable {
+    
+    case content
+    case person
+    
+    var title: String {
+      switch self {
+        case .content:
+          return "작품"
+          
+        case .person:
+          return "배우"
+      }
+    }
+    
+    var image: UIImage? {
+      switch self {
+        case .content:
+          return UIImage(systemName: "play.tv.fill")
+          
+        case .person:
+          return UIImage(systemName: "person.fill")
+      }
+    }
+  }
+  
+  func makeAction(with menu: SearchMenu) -> UIAction {
+    return UIAction(title: menu.title, image: menu.image) { action in
+      self.currentSearchMenu = menu
+    }
+  }
+}
+
+extension SearchViewController: UISearchBarDelegate {
   
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     guard let text = searchBar.text else { return }
@@ -85,7 +157,7 @@ extension SearchTVViewController: UISearchBarDelegate {
   }
 }
 
-extension SearchTVViewController: TableControllable {
+extension SearchViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return tvList.count

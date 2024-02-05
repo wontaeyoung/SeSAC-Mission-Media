@@ -102,6 +102,7 @@ final class SessionAPIManager {
       GCD.main {
         completion(entity, nil)
       }
-    }.resume()
+    }
+    .resume()
   }
 }
