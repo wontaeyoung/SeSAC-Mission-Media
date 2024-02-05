@@ -25,6 +25,10 @@ final class TVSummaryView: BaseView {
   private let overviewLabel = SecondaryLabel().configured { $0.numberOfLines = 0 }
   
   
+  // MARK: - Property
+  private let commonVerticalPadding = 12
+  
+  
   // MARK: - Life Cycle
   override func setHierarchy() {
     addSubviews(
@@ -47,46 +51,46 @@ final class TVSummaryView: BaseView {
     
     backgroundImageView.snp.makeConstraints {
       $0.top.horizontalEdges.equalToSuperview()
-      $0.bottom.equalTo(overviewLabel.snp.bottom).offset(16)
+      $0.bottom.equalTo(overviewLabel.snp.bottom).offset(commonVerticalPadding)
     }
     
     posterImageView.snp.makeConstraints {
-      $0.top.leading.equalToSuperview().inset(16)
+      $0.top.leading.equalToSuperview().inset(commonVerticalPadding)
       $0.width.equalTo(posterImageView.samplingSize.width)
       $0.height.equalTo(posterImageView.samplingSize.height)
     }
     
     titleLabel.snp.makeConstraints {
-      $0.top.equalToSuperview().offset(16)
+      $0.top.equalToSuperview().offset(commonVerticalPadding)
       $0.leading.equalTo(posterImageView.snp.trailing).offset(16)
       $0.trailing.equalToSuperview().offset(-16)
     }
     
     startDateLabel.snp.makeConstraints {
-      $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+      $0.top.equalTo(titleLabel.snp.bottom).offset(commonVerticalPadding)
       $0.horizontalEdges.equalTo(titleLabel)
     }
     
     genreLabel.snp.makeConstraints {
-      $0.top.equalTo(startDateLabel.snp.bottom).offset(16)
+      $0.top.equalTo(startDateLabel.snp.bottom).offset(commonVerticalPadding)
       $0.horizontalEdges.equalTo(titleLabel)
     }
     
     runningTimeLabel.snp.makeConstraints {
-      $0.top.equalTo(genreLabel.snp.bottom).offset(16)
+      $0.top.equalTo(genreLabel.snp.bottom).offset(commonVerticalPadding)
       $0.horizontalEdges.equalTo(titleLabel)
     }
     
     broadcasterLogoImageView.snp.makeConstraints {
-      $0.top.equalTo(runningTimeLabel.snp.bottom).offset(16)
+      $0.top.equalTo(runningTimeLabel.snp.bottom).offset(commonVerticalPadding)
       $0.leading.equalTo(titleLabel.snp.leading)
       $0.trailing.lessThanOrEqualTo(titleLabel)
-      $0.height.equalTo(25)
+      $0.height.equalTo(20)
       $0.width.equalTo(broadcasterLogoImageView.snp.height).multipliedBy(2.5)
     }
     
     overviewLabel.snp.makeConstraints {
-      $0.top.equalTo(posterImageView.snp.bottom).offset(16)
+      $0.top.equalTo(posterImageView.snp.bottom).offset(commonVerticalPadding)
       $0.horizontalEdges.equalToSuperview().inset(16)
       $0.bottom.equalToSuperview()
     }
@@ -106,7 +110,7 @@ final class TVSummaryView: BaseView {
     
     broadcasterLogoImageView.setImage(
       from: data.broadcasterLogoURL,
-      with: CGSize(width: 25 * 2.5, height: 25)
+      with: CGSize(width: 20 * 2.5, height: 20)
     )
     
     titleLabel.text = data.name.replaceEmptyByDash
