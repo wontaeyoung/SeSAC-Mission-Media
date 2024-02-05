@@ -7,6 +7,5 @@
 
 protocol AppError: Error {
   var logDescription: String { get }
-  var alertDescription: (title: String, message: String) { get }
-  
+  var alertDescription: String { get }
 }
