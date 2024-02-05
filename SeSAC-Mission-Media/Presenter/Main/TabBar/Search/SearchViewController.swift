@@ -42,6 +42,7 @@ final class SearchViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: SearchCoordinator?
+  private let debouncer = Debouncer(delay: 0.5)
   private var tvList: [TV] = [] {
     didSet {
       resultTableView.reloadData()
@@ -153,6 +154,18 @@ extension SearchViewController: UISearchBarDelegate {
       
       self.tvList = response.results
       searchBar.text?.removeAll()
+    }
+  }
+  
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    debouncer.excute(in: .global) {
+      APIManager.shared.callRequest(
+        responseType: TVResponseDTO.self,
+        router: SearchRouter.tv(query: searchText)
+      ) { response in
+        
+        self.tvList = response.results
+      }
     }
   }
 }
