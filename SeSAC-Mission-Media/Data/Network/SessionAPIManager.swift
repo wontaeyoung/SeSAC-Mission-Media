@@ -51,3 +51,57 @@ enum SessionError: AppError {
     }
   }
 }
+
+final class SessionAPIManager {
+  
+  // MARK: - Singleton
+  static let shared = SessionAPIManager()
+  private init() { }
+  
+  // MARK: - Method
+  func callRequest<T: DTO>(
+    responseType: T.Type,
+    router: any Router,
+    completion: @escaping ((T.ModelType)?, SessionError?) -> Void
+  ) {
+    
+    guard let request = try? router.asURLRequest() else {
+      completion(nil, .invalidURL)
+      return
+    }
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+      
+      guard error == nil else {
+        completion(nil, .requestFailed)
+        return
+      }
+      
+      guard let data else {
+        completion(nil, .noData)
+        return
+      }
+      
+      guard let response = response as? HTTPURLResponse else {
+        completion(nil, .invalidResponse)
+        return
+      }
+      
+      guard 200...299 ~= response.statusCode else {
+        completion(nil, .unexceptedResponse(status: response.statusCode))
+        return
+      }
+      
+      guard let result = try? JSONDecoder().decode(responseType.self, from: data) else {
+        completion(nil, .dataDecodingFailed)
+        return
+      }
+      
+      let entity = result.asModel()
+      
+      GCD.main {
+        completion(entity, nil)
+      }
+    }.resume()
+  }
+}
