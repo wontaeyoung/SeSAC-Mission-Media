@@ -11,18 +11,28 @@ import Foundation
 /// => 스케쥴 타이머에서 액션이 실행된 후에 명시적으로 timer에 nil을 전달해서 해제할 수는 있음
 @MainActor
 final class Debouncer {
-  private var timer: Timer?
-  private let delay: TimeInterval
-  
-  init(delay: TimeInterval) {
-    self.delay = delay
-  }
   
   enum Thread {
     case main
     case global
   }
   
+  // MARK: - Property
+  private var timer: Timer?
+  private let delay: TimeInterval
+  
+  
+  // MARK: - Initializer
+  init(delay: TimeInterval) {
+    self.delay = delay
+  }
+  
+  deinit {
+    self.timer?.invalidate()
+  }
+  
+  
+  // MARK: - Method
   func excute(in thread: Thread, action: @escaping () -> Void) {
     /// 이전에 설정된 스케쥴 작업 취소
     timer?.invalidate()
