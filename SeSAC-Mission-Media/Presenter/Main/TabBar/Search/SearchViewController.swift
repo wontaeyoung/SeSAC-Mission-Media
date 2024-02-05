@@ -143,18 +143,7 @@ extension SearchViewController {
 extension SearchViewController: UISearchBarDelegate {
   
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    guard let text = searchBar.text else { return }
-    
     view.endEditing(true)
-    
-    APIManager.shared.callRequest(
-      responseType: TVResponseDTO.self,
-      router: SearchRouter.tv(query: text)
-    ) { response in
-      
-      self.tvList = response.results
-      searchBar.text?.removeAll()
-    }
   }
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
