@@ -1,5 +1,5 @@
 //
-//  Cast.swift
+//  Actor.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 2/3/24.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-struct CastResponseDTO: DTO {
-  let results: [CastDTO]
+struct ActorResponseDTO: DTO {
+  let results: [ActorDTO]
   
   enum CodingKeys: String, CodingKey {
     case results = "cast"
   }
   
-  func asModel() -> CastResponse {
-    return CastResponse(results: results.map { $0.asModel() })
+  func asModel() -> ActorResponse {
+    return ActorResponse(results: results.map { $0.asModel() })
   }
 }
 
-struct CastResponse: Model {
-  let results: [Cast]
+struct ActorResponse: Model {
+  let results: [Actor]
 }
 
-struct CastDTO: DTO {
+struct ActorDTO: DTO {
   
   // MARK: - Property
   let id: Int
@@ -49,8 +49,8 @@ struct CastDTO: DTO {
   }
   
   // MARK: - Method
-  func asModel() -> Cast {
-    return Cast(
+  func asModel() -> Actor {
+    return Actor(
       id: id,
       name: name,
       character: roles.first?.character ?? "",
@@ -64,7 +64,7 @@ struct CastDTO: DTO {
   }
 }
 
-struct Cast: Model {
+struct Actor: Model {
   let id: Int
   let name: String
   let character: String

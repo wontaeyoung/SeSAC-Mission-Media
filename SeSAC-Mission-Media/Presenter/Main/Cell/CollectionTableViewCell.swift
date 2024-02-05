@@ -16,7 +16,7 @@ final class CollectionTableViewCell: BaseTableViewCell {
   private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init()).configured {
     $0.showsHorizontalScrollIndicator = false
     $0.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
-    $0.register(CastCollectionViewCell.self, forCellWithReuseIdentifier: CastCollectionViewCell.identifier)
+    $0.register(ActorCollectionViewCell.self, forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
   }
   
   

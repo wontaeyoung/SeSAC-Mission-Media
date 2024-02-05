@@ -22,7 +22,7 @@ final class TVDetailViewController: BaseViewController {
   // MARK: - Property
   weak var coordinator: TVDetailCoordinator?
   private var recommendationList: [TV] = []
-  private var castList: [Cast] = []
+  private var castList: [Actor] = []
   
   init(seriesID: Int) {
     super.init()
@@ -76,7 +76,7 @@ final class TVDetailViewController: BaseViewController {
     
     group.enter()
     APIManager.shared.callRequest(
-      responseType: CastResponseDTO.self,
+      responseType: ActorResponseDTO.self,
       router: TVRouter.seriesAggregateCredits(seriesID: seriesID)
     ) { [weak self] response in
       guard let self else { return }
@@ -157,9 +157,9 @@ extension TVDetailViewController: CollectionControllable {
         
       case false:
         let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: CastCollectionViewCell.identifier,
+          withReuseIdentifier: ActorCollectionViewCell.identifier,
           for: indexPath
-        ) as! CastCollectionViewCell
+        ) as! ActorCollectionViewCell
         
         let data = castList[indexPath.row]
         cell.setData(with: data)

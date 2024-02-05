@@ -1,5 +1,5 @@
 //
-//  CastCollectionViewCell.swift
+//  ActorCollectionViewCell.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 2/4/24.
@@ -10,7 +10,7 @@ import SnapKit
 import Kingfisher
 
 /// 출연진 이미지와 본명, 배역 이름을 표시하는 컬렉션 셀
-final class CastCollectionViewCell: BaseCollectionViewCell {
+final class ActorCollectionViewCell: BaseCollectionViewCell {
   
   // MARK: - UI
   private let profileImageView = PosterImageView(samplingHeight: 160)
@@ -49,7 +49,7 @@ final class CastCollectionViewCell: BaseCollectionViewCell {
   
   
   // MARK: - Method
-  func setData(with data: Cast) {
+  func setData(with data: Actor) {
     self.profileImageView.setImage(from: data.profileURL, with: profileImageView.samplingSize)
     self.nameLabel.text = data.name.replaceEmptyByDash
     self.characterLabel.text = data.character.replaceEmptyByDash
