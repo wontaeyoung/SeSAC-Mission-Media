@@ -102,8 +102,8 @@ extension Coordinator {
   
   private func showErrorAlert(error: AppError) {
     let alertController = UIAlertController(
-      title: error.alertDescription.title,
-      message: error.alertDescription.message,
+      title: error.alertDescription,
+      message: nil,
       preferredStyle: .alert
     )
       .setAction(title: "확인", style: .default)

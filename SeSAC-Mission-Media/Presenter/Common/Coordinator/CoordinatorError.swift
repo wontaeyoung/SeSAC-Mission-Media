@@ -15,11 +15,10 @@ enum CoordinatorError: AppError {
     }
   }
   
-  var alertDescription: (title: String, message: String) {
+  var alertDescription: String {
     switch self {
       case .undefiendError:
-        return (title: "알 수 없는 오류가 발생했어요.",
-                message: "문제가 계속 되면 잠시 후 다시 시도해주세요!")
+        return "알 수 없는 오류가 발생했어요, 문제가 계속 되면 잠시 후 다시 시도해주세요!"
     }
   }
 }
