@@ -9,6 +9,10 @@ import Foundation
 
 /// 싱글톤으로 구현해도 런루프 관리는 할 수 있지만 타이머 참조가 해제되지 않고 남아있게 됨
 /// => 스케쥴 타이머에서 액션이 실행된 후에 명시적으로 timer에 nil을 전달해서 해제할 수는 있음
+
+/// 메인 런루프를 사용하기 위해 MainActor에서 동작하도록 강제해야 함
+/// 백그라운드 런루프를 사용하고 싶다면, 명시적으로 런루프를 생성하고 실행해야 함
+@MainActor
 final class Debouncer {
   
   enum Thread {
