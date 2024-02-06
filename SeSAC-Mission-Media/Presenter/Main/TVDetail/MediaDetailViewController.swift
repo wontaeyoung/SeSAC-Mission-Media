@@ -1,5 +1,5 @@
 //
-//  TVDetailViewController.swift
+//  MediaDetailViewController.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 2/1/24.
@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-final class TVDetailViewController: BaseViewController {
+final class MediaDetailViewController: BaseViewController {
   
   // MARK: - UI
-  private let summaryView = TVSummaryView()
+  private let summaryView = MediaSummaryView()
   private lazy var tableView = UITableView().configured {
     $0.dataSource = self
     $0.delegate = self
@@ -20,7 +20,7 @@ final class TVDetailViewController: BaseViewController {
   }
   
   // MARK: - Property
-  weak var coordinator: TVDetailCoordinator?
+  weak var coordinator: MediaDetailCoordinator?
   private var recommendationList: [Media] = []
   private var castList: [Actor] = []
   
@@ -104,7 +104,7 @@ final class TVDetailViewController: BaseViewController {
   }
 }
 
-extension TVDetailViewController: TableControllable {
+extension MediaDetailViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return Collection.Search.allCases.count
@@ -127,7 +127,7 @@ extension TVDetailViewController: TableControllable {
   }
 }
 
-extension TVDetailViewController: CollectionControllable {
+extension MediaDetailViewController: CollectionControllable {
   
   func makeCollectionLayout() -> UICollectionViewFlowLayout {
     return UICollectionViewFlowLayout().configured {
@@ -146,9 +146,9 @@ extension TVDetailViewController: CollectionControllable {
     switch collectionView.tag == .zero {
       case true:
         let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: TVCollectionViewCell.identifier,
+          withReuseIdentifier: MediaCollectionViewCell.identifier,
           for: indexPath
-        ) as! TVCollectionViewCell
+        ) as! MediaCollectionViewCell
         
         let data = recommendationList[indexPath.row]
         cell.setData(with: data)
@@ -176,6 +176,6 @@ extension TVDetailViewController: CollectionControllable {
       return
     }
     
-    coordinator?.showTVDetailViewController(with: data.id)
+    coordinator?.showMediaDetailViewController(with: data.id)
   }
 }

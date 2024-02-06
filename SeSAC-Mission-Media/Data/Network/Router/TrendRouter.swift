@@ -10,11 +10,11 @@ import Foundation
 
 enum TrendRouter: Router {
   
-  case trendTV(timeWindow: TimeWindow)
+  case tv(timeWindow: TimeWindow)
   
   var method: HTTPMethod {
     switch self {
-      case .trendTV:
+      case .tv:
         return .get
     }
   }
@@ -25,7 +25,7 @@ enum TrendRouter: Router {
   
   var path: String {
     switch self {
-      case .trendTV(let timeWindow):
+      case .tv(let timeWindow):
         return "/tv/\(timeWindow.rawValue)"
     }
   }
@@ -39,7 +39,7 @@ enum TrendRouter: Router {
     let parameters = Constant.Parameter.self
     
     switch self {
-      case .trendTV:
+      case .tv:
         return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
     }
   }

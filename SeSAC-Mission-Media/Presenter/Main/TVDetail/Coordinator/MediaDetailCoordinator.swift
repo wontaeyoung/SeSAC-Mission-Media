@@ -1,5 +1,5 @@
 //
-//  TVDetailCoordinator.swift
+//  MediaDetailCoordinator.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 2/5/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TVDetailCoordinator: Coordinator {
+final class MediaDetailCoordinator: Coordinator {
   
   weak var delegate: CoordinatorDelegate?
   var navigationController: UINavigationController
@@ -22,7 +22,7 @@ final class TVDetailCoordinator: Coordinator {
   func start() {
     guard let seriesID else { return }
     
-    showTVDetailViewController(with: seriesID)
+    showMediaDetailViewController(with: seriesID)
   }
   
   func setData(with seriesID: Int) {
@@ -30,9 +30,9 @@ final class TVDetailCoordinator: Coordinator {
   }
 }
 
-extension TVDetailCoordinator {
-  func showTVDetailViewController(with seriesID: Int) {
-    let viewController = TVDetailViewController(seriesID: seriesID)
+extension MediaDetailCoordinator {
+  func showMediaDetailViewController(with seriesID: Int) {
+    let viewController = MediaDetailViewController(seriesID: seriesID)
     viewController.coordinator = self
     
     self.push(viewController)

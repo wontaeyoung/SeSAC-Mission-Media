@@ -17,7 +17,7 @@ final class SearchViewController: BaseViewController {
   
   // MARK: - UI
   private lazy var searchBar = UISearchBar().configured {
-    $0.placeholder = "TV 프로그램 이름을 검색하세요"
+    $0.placeholder = "작품 이름을 검색하세요"
     $0.barTintColor = .clear
     $0.barStyle = .black
     $0.tintColor = .label
@@ -36,7 +36,7 @@ final class SearchViewController: BaseViewController {
   private lazy var resultTableView = UITableView().configured {
     $0.delegate = self
     $0.dataSource = self
-    $0.register(SearchTVTableViewCell.self, forCellReuseIdentifier: SearchTVTableViewCell.identifier)
+    $0.register(SearchMediaTableViewCell.self, forCellReuseIdentifier: SearchMediaTableViewCell.identifier)
     $0.register(SearchActorTableViewCell.self, forCellReuseIdentifier: SearchActorTableViewCell.identifier)
   }
   
@@ -54,7 +54,7 @@ final class SearchViewController: BaseViewController {
     }
   }
   
-  private var tvList: [Media] = [] {
+  private var mediaList: [Media] = [] {
     didSet {
       resultTableView.reloadData()
     }
@@ -174,7 +174,7 @@ extension SearchViewController: UISearchBarDelegate {
             router: SearchRouter.tv(query: searchText)
           ) { response in
             
-            self.tvList = response.results
+            self.mediaList = response.results
           }
           
         case .person:
@@ -210,7 +210,7 @@ extension SearchViewController: TableControllable {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch currentSearchMenu {
       case .content:
-        return tvList.count
+        return mediaList.count
         
       case .person:
         return actorList.count
@@ -221,11 +221,11 @@ extension SearchViewController: TableControllable {
     switch currentSearchMenu {
       case .content:
         let cell = tableView.dequeueReusableCell(
-          withIdentifier: SearchTVTableViewCell.identifier,
+          withIdentifier: SearchMediaTableViewCell.identifier,
           for: indexPath
-        ) as! SearchTVTableViewCell
+        ) as! SearchMediaTableViewCell
         
-        let data = tvList[indexPath.row]
+        let data = mediaList[indexPath.row]
         cell.setData(with: data)
         
         return cell
@@ -244,9 +244,9 @@ extension SearchViewController: TableControllable {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let data = tvList[indexPath.row]
+    let data = mediaList[indexPath.row]
     
-    coordinator?.combineTVDetailFlow(with: data.id)
+    coordinator?.combineMediaDetailFlow(with: data.id)
     view.endEditing(true)
   }
 }

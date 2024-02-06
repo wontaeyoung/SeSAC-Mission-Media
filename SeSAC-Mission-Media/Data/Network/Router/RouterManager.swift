@@ -24,7 +24,7 @@ final class RouterManager {
       case .trend:
         APIManager.shared.callRequest(
           responseType: TVResponseDTO.self,
-          router: TrendRouter.trendTV(timeWindow: .week)
+          router: TrendRouter.tv(timeWindow: .week)
         ) { response in
           completion(response.results)
         }

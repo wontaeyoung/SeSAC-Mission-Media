@@ -41,7 +41,7 @@ final class HomeViewController: BaseViewController {
         case .trend:
           APIManager.shared.callRequest(
             responseType: MediaResponseDTO.self,
-            router: TrendRouter.trendTV(timeWindow: .week)
+            router: TrendRouter.tv(timeWindow: .week)
           ) { response in
             
             self.tvListDictionary[collection] = response.results
@@ -122,9 +122,9 @@ extension HomeViewController: CollectionControllable {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: TVCollectionViewCell.identifier,
+      withReuseIdentifier: MediaCollectionViewCell.identifier,
       for: indexPath
-    ) as! TVCollectionViewCell
+    ) as! MediaCollectionViewCell
     
     guard
       let collection = Collection.Home.allCases[at: collectionView.tag],
@@ -148,6 +148,6 @@ extension HomeViewController: CollectionControllable {
       return
     }
     
-    coordinator?.combineTVDetailFlow(with: data.id)
+    coordinator?.combineMediaDetailFlow(with: data.id)
   }
 }

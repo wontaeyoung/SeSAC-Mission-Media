@@ -15,7 +15,7 @@ final class CollectionTableViewCell: BaseTableViewCell {
   private let titleLabel = PrimaryLabel()
   private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init()).configured {
     $0.showsHorizontalScrollIndicator = false
-    $0.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
+    $0.register(MediaCollectionViewCell.self, forCellWithReuseIdentifier: MediaCollectionViewCell.identifier)
     $0.register(ActorCollectionViewCell.self, forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
   }
   

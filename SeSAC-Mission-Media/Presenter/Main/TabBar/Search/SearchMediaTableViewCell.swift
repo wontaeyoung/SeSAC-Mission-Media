@@ -1,5 +1,5 @@
 //
-//  SearchTVTableViewCell.swift
+//  SearchMediaTableViewCell.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 1/31/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SearchTVTableViewCell: BaseTableViewCell {
+final class SearchMediaTableViewCell: BaseTableViewCell {
   
   // MARK: - UI
   private let posterImageView = PosterImageView(samplingHeight: 160)

@@ -1,5 +1,5 @@
 //
-//  TVSummaryView.swift
+//  MediaSummaryView.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 2/1/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class TVSummaryView: BaseView {
+final class MediaSummaryView: BaseView {
   
   
   // MARK: - UI

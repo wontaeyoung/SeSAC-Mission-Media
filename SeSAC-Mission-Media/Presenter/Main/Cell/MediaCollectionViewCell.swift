@@ -1,5 +1,5 @@
 //
-//  TVCollectionViewCell.swift
+//  MediaCollectionViewCell.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 1/31/24.
@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-/// TV 포스터 이미지와 타이틀을 표시하는 컬렉션 셀
-final class TVCollectionViewCell: BaseCollectionViewCell {
+/// 작품 포스터 이미지와 타이틀을 표시하는 컬렉션 셀
+final class MediaCollectionViewCell: BaseCollectionViewCell {
   
   // MARK: - UI
   private let posterImageView = PosterImageView(samplingHeight: 160)
