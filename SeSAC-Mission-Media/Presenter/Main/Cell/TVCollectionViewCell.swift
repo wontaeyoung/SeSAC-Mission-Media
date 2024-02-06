@@ -36,8 +36,8 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
   
   
   // MARK: - Method
-  func setData(with data: TV) {
+  func setData(with data: Media) {
     self.posterImageView.setImage(from: data.posterURL, with: posterImageView.samplingSize)
-    self.nameLabel.text = data.name
+    self.nameLabel.text = data.title
   }
 }

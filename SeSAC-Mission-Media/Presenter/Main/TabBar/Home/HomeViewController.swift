@@ -20,7 +20,7 @@ final class HomeViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: HomeCoordinator?
-  private var tvListDictionary: [Collection.Home: [TV]] = [:] {
+  private var tvListDictionary: [Collection.Home: [Media]] = [:] {
     didSet {
       tvTableView.reloadData()
     }
@@ -40,7 +40,7 @@ final class HomeViewController: BaseViewController {
       switch collection {
         case .trend:
           APIManager.shared.callRequest(
-            responseType: TVResponseDTO.self,
+            responseType: MediaResponseDTO.self,
             router: TrendRouter.trendTV(timeWindow: .week)
           ) { response in
             
@@ -49,7 +49,7 @@ final class HomeViewController: BaseViewController {
           
         case .topRated:
           APIManager.shared.callRequest(
-            responseType: TVResponseDTO.self,
+            responseType: MediaResponseDTO.self,
             router: TVRouter.topRated
           ) { response in
             
@@ -58,7 +58,7 @@ final class HomeViewController: BaseViewController {
           
         case .popular:
           APIManager.shared.callRequest(
-            responseType: TVResponseDTO.self,
+            responseType: MediaResponseDTO.self,
             router: TVRouter.popular
           ) { response in
             

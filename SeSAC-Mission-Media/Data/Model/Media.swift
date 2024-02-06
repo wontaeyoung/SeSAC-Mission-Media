@@ -1,5 +1,5 @@
 //
-//  TV.swift
+//  Media.swift
 //  SeSAC-Mission-Media
 //
 //  Created by 원태영 on 1/30/24.
@@ -7,29 +7,31 @@
 
 import Foundation
 
-struct TVResponseDTO: DTO {
-  let results: [TVDTO]
+struct MediaResponseDTO: DTO {
+  let results: [MediaDTO]
   
-  func asModel() -> TVResponse {
-    return TVResponse(results: results.map { $0.asModel() })
+  func asModel() -> MediaResponse {
+    return MediaResponse(results: results.map { $0.asModel() })
   }
 }
 
-struct TVResponse: Model {
-  let results: [TV]
+struct MediaResponse: Model {
+  let results: [Media]
 }
 
-struct TVDTO: DTO {
+struct MediaDTO: DTO {
   
   // MARK: - Property
   let id: Int
-  let name: String
+  let title: String
   let overview: String
   let posterPath: String
   
   // MARK: - Decoding
   enum CodingKeys: String, CodingKey {
-    case id, name, overview
+    case id
+    case name, title
+    case overview
     case posterPath = "poster_path"
   }
   
@@ -38,25 +40,25 @@ struct TVDTO: DTO {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     
     self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? alternative.id
-    self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
+    self.title = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
     self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? alternative.text
     self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? alternative.imagePath
   }
   
   // MARK: - Method
-  func asModel() -> TV {
-    return TV(
+  func asModel() -> Media {
+    return Media(
       id: id,
-      name: name,
+      title: title,
       overview: overview,
       posterPath: posterPath
     )
   }
 }
 
-struct TV: Model {
+struct Media: Model {
   let id: Int
-  let name: String
+  let title: String
   let overview: String
   let posterPath: String
   

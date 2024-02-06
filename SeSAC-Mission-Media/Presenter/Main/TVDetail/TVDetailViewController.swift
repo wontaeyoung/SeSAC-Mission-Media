@@ -21,7 +21,7 @@ final class TVDetailViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: TVDetailCoordinator?
-  private var recommendationList: [TV] = []
+  private var recommendationList: [Media] = []
   private var castList: [Actor] = []
   
   init(seriesID: Int) {
@@ -65,7 +65,7 @@ final class TVDetailViewController: BaseViewController {
     
     group.enter()
     APIManager.shared.callRequest(
-      responseType: TVResponseDTO.self,
+      responseType: MediaResponseDTO.self,
       router: TVRouter.seriesRecommandation(seriesID: seriesID)
     ) { [weak self] response in
       guard let self else { return }

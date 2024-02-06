@@ -54,7 +54,7 @@ final class SearchViewController: BaseViewController {
     }
   }
   
-  private var tvList: [TV] = [] {
+  private var tvList: [Media] = [] {
     didSet {
       resultTableView.reloadData()
     }
@@ -170,7 +170,7 @@ extension SearchViewController: UISearchBarDelegate {
       switch currentSearchMenu {
         case .content:
           APIManager.shared.callRequest(
-            responseType: TVResponseDTO.self,
+            responseType: MediaResponseDTO.self,
             router: SearchRouter.tv(query: searchText)
           ) { response in
             
