@@ -33,7 +33,7 @@ struct MediaDTO: DTO {
   // MARK: - Decoding
   enum CodingKeys: String, CodingKey {
     case id
-    case name, title
+    case tvTitle = "name", movieTitle = "title"
     case overview
     case posterPath = "poster_path"
   }
@@ -46,14 +46,13 @@ struct MediaDTO: DTO {
     self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? alternative.text
     self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? alternative.imagePath
     
-    guard let name = try container.decodeIfPresent(String.self, forKey: .name) else {
-      self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? alternative.text
-      self.type = "movie"
-      return
+    if let tvTitle = try container.decodeIfPresent(String.self, forKey: .tvTitle) {
+      self.title = tvTitle
+      self.type = MediaType.tv.rawValue
+    } else {
+      self.title = try container.decodeIfPresent(String.self, forKey: .movieTitle) ?? alternative.text
+      self.type = MediaType.movie.rawValue
     }
-    
-    self.title = name
-    self.type = "tv"
   }
   
   // MARK: - Method

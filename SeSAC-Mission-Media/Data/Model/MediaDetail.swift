@@ -60,10 +60,10 @@ struct MediaDetailDTO: DTO {
     
     if let tvTitle = try container.decodeIfPresent(String.self, forKey: .tvTitle) {
       self.title = tvTitle
-      self.type = "tv"
+      self.type = MediaType.tv.rawValue
     } else {
       self.title = try container.decodeIfPresent(String.self, forKey: .movieTitle) ?? alternative.text
-      self.type = "movie"
+      self.type = MediaType.movie.rawValue
     }
     
     if let tvStartDate = try container.decodeIfPresent(String.self, forKey: .tvStartDate) {
@@ -163,7 +163,7 @@ struct MediaDetail: Model {
     return URL(string: APIKey.TMDB.imageRequestPath + backdropPath)
   }
   
-  var broadcasterLogoURL: URL? {
+  var companyLogoURL: URL? {
     return URL(string: APIKey.TMDB.imageRequestPath + companyLogoPath)
   }
 }

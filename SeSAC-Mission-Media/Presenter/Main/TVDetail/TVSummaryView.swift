@@ -109,7 +109,7 @@ final class TVSummaryView: BaseView {
     )
     
     broadcasterLogoImageView.setImage(
-      from: data.broadcasterLogoURL,
+      from: data.companyLogoURL,
       with: CGSize(width: 20 * 2.5, height: 20)
     )
     
