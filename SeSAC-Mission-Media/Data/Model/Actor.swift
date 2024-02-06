@@ -11,7 +11,7 @@ struct ActorResponseDTO: DTO {
   let results: [ActorDTO]
   
   enum CodingKeys: String, CodingKey {
-    case results = "cast"
+    case results = "results"
   }
   
   func asModel() -> ActorResponse {

@@ -11,10 +11,14 @@ import Foundation
 enum SearchRouter: Router {
   
   case tv(query: String)
+  case person(query: String)
   
   var method: HTTPMethod {
     switch self {
       case .tv:
+        return .get
+        
+      case .person:
         return .get
     }
   }
@@ -27,6 +31,9 @@ enum SearchRouter: Router {
     switch self {
       case .tv:
         return "tv"
+        
+      case .person:
+        return "person"
     }
   }
   
@@ -39,6 +46,12 @@ enum SearchRouter: Router {
     
     switch self {
       case .tv(let query):
+        return [
+          parameters.language(iso: .kor).key: parameters.language(iso: .kor).value,
+          parameters.query.key: query
+        ]
+        
+      case .person(let query):
         return [
           parameters.language(iso: .kor).key: parameters.language(iso: .kor).value,
           parameters.query.key: query

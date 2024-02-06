@@ -108,7 +108,9 @@ extension Coordinator {
     )
       .setAction(title: "확인", style: .default)
     
-    self.present(alertController)
+    GCD.main {
+      self.present(alertController)
+    }
   }
   
   func addChild(_ childCoordinator: Coordinator) {

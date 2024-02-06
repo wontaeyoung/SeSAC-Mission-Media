@@ -37,6 +37,7 @@ final class SearchViewController: BaseViewController {
     $0.delegate = self
     $0.dataSource = self
     $0.register(SearchTVTableViewCell.self, forCellReuseIdentifier: SearchTVTableViewCell.identifier)
+    $0.register(SearchActorTableViewCell.self, forCellReuseIdentifier: SearchActorTableViewCell.identifier)
   }
   
   
@@ -45,16 +46,23 @@ final class SearchViewController: BaseViewController {
   private let debouncer = Debouncer(delay: 0.5)
   private var currentQuery: String = ""
   
+  private var currentSearchMenu: SearchMenu = .content {
+    didSet {
+      updateNavigationTitle(with: currentSearchMenu)
+      updateSearchBarPlaceholder(with: currentSearchMenu)
+      resultTableView.reloadData()
+    }
+  }
+  
   private var tvList: [TV] = [] {
     didSet {
       resultTableView.reloadData()
     }
   }
   
-  private var currentSearchMenu: SearchMenu = .content {
+  private var actorList: [Actor] = [] {
     didSet {
-      updateNavigationTitle(with: currentSearchMenu)
-      updateSearchBarPlaceholder(with: currentSearchMenu)
+      resultTableView.reloadData()
     }
   }
   
@@ -138,6 +146,7 @@ extension SearchViewController {
   func makeAction(with menu: SearchMenu) -> UIAction {
     return UIAction(title: menu.title, image: menu.image) { action in
       self.currentSearchMenu = menu
+      print("여기!!", self.currentSearchMenu)
     }
   }
 }
@@ -158,14 +167,40 @@ extension SearchViewController: UISearchBarDelegate {
         return
       }
       
-      APIManager.shared.callRequest(
-        responseType: TVResponseDTO.self,
-        router: SearchRouter.tv(query: searchText)
-      ) { response in
-        
-        self.tvList = response.results
-        self.currentQuery = searchText
+      switch currentSearchMenu {
+        case .content:
+          APIManager.shared.callRequest(
+            responseType: TVResponseDTO.self,
+            router: SearchRouter.tv(query: searchText)
+          ) { response in
+            
+            self.tvList = response.results
+          }
+          
+        case .person:
+          SessionAPIManager.shared.callRequest(
+            responseType: ActorResponseDTO.self,
+            router: SearchRouter.person(query: searchText)
+          ) { [weak self] data, error in
+            guard let self else { return }
+            
+            if let error {
+              LogManager.shared.log(with: error, to: .network)
+              coordinator?.handle(error: error)
+            }
+            
+            guard let data else {
+              let error = SessionError.noData
+              LogManager.shared.log(with: error, to: .network)
+              coordinator?.handle(error: error)
+              return
+            }
+            
+            self.actorList = data.results
+          }
       }
+      
+      self.currentQuery = searchText
     }
   }
 }
@@ -173,19 +208,39 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return tvList.count
+    switch currentSearchMenu {
+      case .content:
+        return tvList.count
+        
+      case .person:
+        return actorList.count
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(
-      withIdentifier: SearchTVTableViewCell.identifier,
-      for: indexPath
-    ) as! SearchTVTableViewCell
-    
-    let data = tvList[indexPath.row]
-    cell.setData(with: data)
-    
-    return cell
+    switch currentSearchMenu {
+      case .content:
+        let cell = tableView.dequeueReusableCell(
+          withIdentifier: SearchTVTableViewCell.identifier,
+          for: indexPath
+        ) as! SearchTVTableViewCell
+        
+        let data = tvList[indexPath.row]
+        cell.setData(with: data)
+        
+        return cell
+        
+      case .person:
+        let cell = tableView.dequeueReusableCell(
+          withIdentifier: SearchActorTableViewCell.identifier,
+          for: indexPath
+        ) as! SearchActorTableViewCell
+        
+        let data = actorList[indexPath.row]
+        cell.setData(with: data)
+        
+        return cell
+    }
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
