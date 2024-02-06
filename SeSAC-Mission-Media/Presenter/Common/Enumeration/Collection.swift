@@ -26,7 +26,7 @@ enum Collection {
     }
   }
   
-  enum Search: Int, DisplayableCollection {
+  enum MediaDetail: Int, DisplayableCollection {
     case recommend
     case cast
     
@@ -37,6 +37,21 @@ enum Collection {
           
         case .cast:
           return "출연진"
+      }
+    }
+  }
+  
+  enum PersonDetail: Int, DisplayableCollection {
+    case tvFilmography
+    case movieFilmography
+    
+    var title: String {
+      switch self {
+        case .tvFilmography:
+          return "출연작 - TV"
+          
+        case .movieFilmography:
+          return "출연작 - 영화"
       }
     }
   }
