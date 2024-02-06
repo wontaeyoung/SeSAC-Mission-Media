@@ -167,4 +167,3 @@ struct MediaDetail: Model {
     return URL(string: APIKey.TMDB.imageRequestPath + companyLogoPath)
   }
 }
-
