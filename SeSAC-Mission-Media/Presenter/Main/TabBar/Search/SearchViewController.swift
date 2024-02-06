@@ -244,9 +244,16 @@ extension SearchViewController: TableControllable {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let data = mediaList[indexPath.row]
+    switch currentSearchMenu {
+      case .content:
+        let data = mediaList[indexPath.row]
+        coordinator?.combineMediaDetailFlow(with: data.id)
+        
+      case .person:
+        let data = actorList[indexPath.row]
+        coordinator?.combineActorDetailFlow(with: data)
+    }
     
-    coordinator?.combineMediaDetailFlow(with: data.id)
     view.endEditing(true)
   }
 }
