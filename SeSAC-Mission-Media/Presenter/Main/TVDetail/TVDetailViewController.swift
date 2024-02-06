@@ -54,7 +54,7 @@ final class TVDetailViewController: BaseViewController {
     let group = DispatchGroup()
     
     APIManager.shared.callRequest(
-      responseType: TVDetailDTO.self,
+      responseType: MediaDetailDTO.self,
       router: TVRouter.seriesDetails(seriesID: seriesID)
     ) { [weak self] response in
       guard let self else { return }

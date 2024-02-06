@@ -97,7 +97,7 @@ final class TVSummaryView: BaseView {
   }
   
   // MARK: - Method
-  func setData(with data: TVDetail) {
+  func setData(with data: MediaDetail) {
     backgroundImageView.setImage(
       from: data.backdropURL,
       with: CGSize(width: UIScreen.main.bounds.width, height: 300)

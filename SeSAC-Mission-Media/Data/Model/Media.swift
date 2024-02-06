@@ -27,6 +27,9 @@ struct MediaDTO: DTO {
   let overview: String
   let posterPath: String
   
+  /// Client Created
+  let type: String
+  
   // MARK: - Decoding
   enum CodingKeys: String, CodingKey {
     case id
@@ -40,9 +43,17 @@ struct MediaDTO: DTO {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     
     self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? alternative.id
-    self.title = try container.decodeIfPresent(String.self, forKey: .name) ?? alternative.text
     self.overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? alternative.text
     self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? alternative.imagePath
+    
+    guard let name = try container.decodeIfPresent(String.self, forKey: .name) else {
+      self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? alternative.text
+      self.type = "movie"
+      return
+    }
+    
+    self.title = name
+    self.type = "tv"
   }
   
   // MARK: - Method
@@ -51,7 +62,8 @@ struct MediaDTO: DTO {
       id: id,
       title: title,
       overview: overview,
-      posterPath: posterPath
+      posterPath: posterPath,
+      type: MediaType(rawValue: type) ?? .unknown
     )
   }
 }
@@ -61,8 +73,15 @@ struct Media: Model {
   let title: String
   let overview: String
   let posterPath: String
+  let type: MediaType
   
   var posterURL: URL? {
     return URL(string: APIKey.TMDB.imageRequestPath + posterPath)
   }
+}
+
+enum MediaType: String {
+  case tv
+  case movie
+  case unknown
 }

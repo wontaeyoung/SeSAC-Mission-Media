@@ -64,7 +64,7 @@
 		6EB692E22B6A5EB300EFA959 /* SearchTVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692E12B6A5EB300EFA959 /* SearchTVTableViewCell.swift */; };
 		6EB692E72B6B172600EFA959 /* TVDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692E62B6B172600EFA959 /* TVDetailViewController.swift */; };
 		6EB692EB2B6B180C00EFA959 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692EA2B6B180C00EFA959 /* BaseView.swift */; };
-		6EB692F72B6BB73400EFA959 /* TVDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692F62B6BB73400EFA959 /* TVDetail.swift */; };
+		6EB692F72B6BB73400EFA959 /* MediaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692F62B6BB73400EFA959 /* MediaDetail.swift */; };
 		6EB692F92B6BB8B000EFA959 /* TVSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692F82B6BB8B000EFA959 /* TVSummaryView.swift */; };
 		6EB692FF2B6BBA0A00EFA959 /* UIControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB692FE2B6BBA0A00EFA959 /* UIControllable.swift */; };
 		6EB693012B6BBB2700EFA959 /* TertiaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB693002B6BBB2700EFA959 /* TertiaryLabel.swift */; };
@@ -142,7 +142,7 @@
 		6EB692E12B6A5EB300EFA959 /* SearchTVTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVTableViewCell.swift; sourceTree = "<group>"; };
 		6EB692E62B6B172600EFA959 /* TVDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDetailViewController.swift; sourceTree = "<group>"; };
 		6EB692EA2B6B180C00EFA959 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		6EB692F62B6BB73400EFA959 /* TVDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDetail.swift; sourceTree = "<group>"; };
+		6EB692F62B6BB73400EFA959 /* MediaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetail.swift; sourceTree = "<group>"; };
 		6EB692F82B6BB8B000EFA959 /* TVSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSummaryView.swift; sourceTree = "<group>"; };
 		6EB692FE2B6BBA0A00EFA959 /* UIControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControllable.swift; sourceTree = "<group>"; };
 		6EB693002B6BBB2700EFA959 /* TertiaryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TertiaryLabel.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 			children = (
 				6E95210E2B72246D00AFED18 /* Protocol */,
 				6E51486F2B69418E00D5E3E0 /* Media.swift */,
-				6EB692F62B6BB73400EFA959 /* TVDetail.swift */,
+				6EB692F62B6BB73400EFA959 /* MediaDetail.swift */,
 				6E9520DA2B6E7B9A00AFED18 /* Actor.swift */,
 			);
 			path = Model;
@@ -626,7 +626,7 @@
 				6E9521052B70CFF400AFED18 /* GCDManager.swift in Sources */,
 				6E1F003F2B68DD9300EF388A /* SceneDelegate.swift in Sources */,
 				6E9520E92B6FE43900AFED18 /* TVDetailCoordinator.swift in Sources */,
-				6EB692F72B6BB73400EFA959 /* TVDetail.swift in Sources */,
+				6EB692F72B6BB73400EFA959 /* MediaDetail.swift in Sources */,
 				6E9520E22B6FDE4800AFED18 /* Array+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
