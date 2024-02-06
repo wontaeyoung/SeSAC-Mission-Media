@@ -43,7 +43,7 @@ final class SearchViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: SearchCoordinator?
-  private let debouncer = Debouncer(delay: 1)
+  private let debouncer = Debouncer(delay: 0.5)
   private var currentQuery: String = ""
   
   private var currentSearchMenu: SearchMenu = .content {
