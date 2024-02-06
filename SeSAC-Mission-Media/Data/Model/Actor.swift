@@ -94,8 +94,15 @@ struct Actor: Entity {
   let filmography: [Media]
   var bioInfo: ActorBio?
   
+  lazy var tvFilmography: [Media] = filteredFilmography(by: .tv)
+  lazy var movieFilmography: [Media] = filteredFilmography(by: .movie)
+  
   var profileURL: URL? {
     return URL(string: APIKey.TMDB.imageRequestPath + profilePath)
+  }
+  
+  func filteredFilmography(by type: MediaType) -> [Media] {
+    return filmography.filter { $0.type == type }
   }
   
   mutating func combineMoreInfo(with actorBio: ActorBio) {
