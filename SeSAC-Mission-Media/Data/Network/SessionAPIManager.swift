@@ -62,7 +62,7 @@ final class SessionAPIManager {
   func callRequest<T: DTO>(
     responseType: T.Type,
     router: any Router,
-    completion: @escaping ((T.ModelType)?, SessionError?) -> Void
+    completion: @escaping ((T.EntityType)?, SessionError?) -> Void
   ) {
     
     guard let request = try? router.asURLRequest() else {
@@ -97,7 +97,7 @@ final class SessionAPIManager {
         return
       }
       
-      let entity = result.asModel()
+      let entity = result.toEntity()
       
       GCD.main {
         completion(entity, nil)

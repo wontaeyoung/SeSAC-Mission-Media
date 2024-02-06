@@ -6,7 +6,7 @@
 //
 
 protocol DTO: Decodable {
-  associatedtype ModelType: Model
+  associatedtype EntityType: Entity
   
-  func asModel() -> ModelType
+  func toEntity() -> EntityType
 }

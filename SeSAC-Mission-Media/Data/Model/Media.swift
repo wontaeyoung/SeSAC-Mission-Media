@@ -10,12 +10,12 @@ import Foundation
 struct MediaResponseDTO: DTO {
   let results: [MediaDTO]
   
-  func asModel() -> MediaResponse {
-    return MediaResponse(results: results.map { $0.asModel() })
+  func toEntity() -> MediaResponse {
+    return MediaResponse(results: results.map { $0.toEntity() })
   }
 }
 
-struct MediaResponse: Model {
+struct MediaResponse: Entity {
   let results: [Media]
 }
 
@@ -56,7 +56,7 @@ struct MediaDTO: DTO {
   }
   
   // MARK: - Method
-  func asModel() -> Media {
+  func toEntity() -> Media {
     return Media(
       id: id,
       title: title,
@@ -67,7 +67,7 @@ struct MediaDTO: DTO {
   }
 }
 
-struct Media: Model {
+struct Media: Entity {
   let id: Int
   let title: String
   let overview: String

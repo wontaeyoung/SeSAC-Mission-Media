@@ -14,8 +14,8 @@ struct ActorResponseDTO: DTO {
     case personResults = "results", castResults = "cast"
   }
   
-  func asModel() -> ActorResponse {
-    return ActorResponse(results: results.map { $0.asModel() })
+  func toEntity() -> ActorResponse {
+    return ActorResponse(results: results.map { $0.toEntity() })
   }
   
   /// cast에서 사용하는 배우와 person에서 사용하는 배우의 items 프로퍼티 키가 다른 상황
@@ -32,7 +32,7 @@ struct ActorResponseDTO: DTO {
   }
 }
 
-struct ActorResponse: Model {
+struct ActorResponse: Entity {
   let results: [Actor]
 }
 
@@ -70,13 +70,13 @@ struct ActorDTO: DTO {
   }
   
   // MARK: - Method
-  func asModel() -> Actor {
+  func toEntity() -> Actor {
     return Actor(
       id: id,
       name: name,
       character: roles.first?.character ?? "",
       profilePath: profilePath,
-      filmography: filmography.map { $0.asModel() }
+      filmography: filmography.map { $0.toEntity() }
     )
   }
   
@@ -86,7 +86,7 @@ struct ActorDTO: DTO {
   }
 }
 
-struct Actor: Model {
+struct Actor: Entity {
   let id: Int
   let name: String
   let character: String
@@ -107,12 +107,12 @@ struct ActorBioDTO: DTO {
   let birthday: String
   let biography: String
   
-  func asModel() -> some Model {
+  func toEntity() -> ActorBio {
     return ActorBio(birthday: birthday, biography: biography)
   }
 }
 
-struct ActorBio: Model {
+struct ActorBio: Entity {
   let birthday: String
   let biography: String
 }

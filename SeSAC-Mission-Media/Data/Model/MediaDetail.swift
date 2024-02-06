@@ -10,12 +10,12 @@ import Foundation
 struct MediaDetailResponseDTO: DTO {
   let results: [MediaDetailDTO]
   
-  func asModel() -> MediaDetailResponse {
-    return MediaDetailResponse(results: results.map { $0.asModel() })
+  func toEntity() -> MediaDetailResponse {
+    return MediaDetailResponse(results: results.map { $0.toEntity() })
   }
 }
 
-struct MediaDetailResponse: Model {
+struct MediaDetailResponse: Entity {
   let results: [MediaDetail]
 }
 
@@ -88,7 +88,7 @@ struct MediaDetailDTO: DTO {
   }
   
   // MARK: - Method
-  func asModel() -> MediaDetail {
+  func toEntity() -> MediaDetail {
     return MediaDetail(
       id: id,
       name: title,
@@ -142,7 +142,7 @@ struct MediaDetailDTO: DTO {
   }
 }
 
-struct MediaDetail: Model {
+struct MediaDetail: Entity {
   let id: Int
   let name: String
   let overview: String

@@ -20,7 +20,7 @@ final class APIManager {
   func callRequest<D: DTO>(
     responseType: D.Type,
     router: Router,
-    completion: @escaping (D.ModelType) -> Void
+    completion: @escaping (D.EntityType) -> Void
   ) {
     
     AF.request(router)
@@ -29,7 +29,7 @@ final class APIManager {
         
         switch response.result {          
           case .success(let result):
-            completion(result.asModel())
+            completion(result.toEntity())
             
           case .failure(let error):
             LogManager.shared.log(with: error, to: .network)

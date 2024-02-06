@@ -21,7 +21,7 @@
 		6E51485C2B69196200D5E3E0 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51485B2B69196200D5E3E0 /* BaseCollectionViewCell.swift */; };
 		6E5148602B691A6D00D5E3E0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51485F2B691A6D00D5E3E0 /* HomeViewController.swift */; };
 		6E5148682B693D5B00D5E3E0 /* RouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148672B693D5B00D5E3E0 /* RouterManager.swift */; };
-		6E51486B2B693E1B00D5E3E0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486A2B693E1B00D5E3E0 /* Model.swift */; };
+		6E51486B2B693E1B00D5E3E0 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486A2B693E1B00D5E3E0 /* Entity.swift */; };
 		6E51486E2B693F5200D5E3E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486D2B693F5200D5E3E0 /* Constant.swift */; };
 		6E5148702B69418E00D5E3E0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E51486F2B69418E00D5E3E0 /* Media.swift */; };
 		6E5148722B69456200D5E3E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5148712B69456200D5E3E0 /* APIManager.swift */; };
@@ -104,7 +104,7 @@
 		6E51485B2B69196200D5E3E0 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		6E51485F2B691A6D00D5E3E0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6E5148672B693D5B00D5E3E0 /* RouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterManager.swift; sourceTree = "<group>"; };
-		6E51486A2B693E1B00D5E3E0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		6E51486A2B693E1B00D5E3E0 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		6E51486D2B693F5200D5E3E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6E51486F2B69418E00D5E3E0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		6E5148712B69456200D5E3E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -455,7 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				6E5148732B69496000D5E3E0 /* DTO.swift */,
-				6E51486A2B693E1B00D5E3E0 /* Model.swift */,
+				6E51486A2B693E1B00D5E3E0 /* Entity.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -572,7 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E51486B2B693E1B00D5E3E0 /* Model.swift in Sources */,
+				6E51486B2B693E1B00D5E3E0 /* Entity.swift in Sources */,
 				6EB693092B6BF79300EFA959 /* CollectionTableViewCell.swift in Sources */,
 				6E5148482B68E8EE00D5E3E0 /* TrendRouter.swift in Sources */,
 				6E9521032B70BCB100AFED18 /* SessionAPIManager.swift in Sources */,
