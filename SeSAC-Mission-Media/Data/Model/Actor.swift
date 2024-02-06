@@ -92,8 +92,27 @@ struct Actor: Model {
   let character: String
   let profilePath: String
   let filmography: [Media]
+  var bioInfo: ActorBio?
   
   var profileURL: URL? {
     return URL(string: APIKey.TMDB.imageRequestPath + profilePath)
   }
+  
+  mutating func combineMoreInfo(with actorBio: ActorBio) {
+    self.bioInfo = actorBio
+  }
+}
+
+struct ActorBioDTO: DTO {
+  let birthday: String
+  let biography: String
+  
+  func asModel() -> some Model {
+    return ActorBio(birthday: birthday, biography: biography)
+  }
+}
+
+struct ActorBio: Model {
+  let birthday: String
+  let biography: String
 }

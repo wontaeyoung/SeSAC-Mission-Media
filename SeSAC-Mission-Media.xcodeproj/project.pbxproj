@@ -319,7 +319,7 @@
 			children = (
 				6E9520E62B6FE29F00AFED18 /* TabBar */,
 				6E9520DC2B6E8D6A00AFED18 /* Cell */,
-				6EB692E32B6B16C200EFA959 /* TVDetail */,
+				6EB692E32B6B16C200EFA959 /* Detail */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -479,14 +479,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		6EB692E32B6B16C200EFA959 /* TVDetail */ = {
+		6EB692E32B6B16C200EFA959 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				6E9520E72B6FE42E00AFED18 /* Coordinator */,
 				6EB692E62B6B172600EFA959 /* MediaDetailViewController.swift */,
 				6EB692F82B6BB8B000EFA959 /* MediaSummaryView.swift */,
 			);
-			path = TVDetail;
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
