@@ -38,4 +38,3 @@ extension MediaDetailCoordinator {
     self.push(viewController)
   }
 }
-

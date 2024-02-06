@@ -16,7 +16,10 @@ final class MediaDetailViewController: BaseViewController {
     $0.dataSource = self
     $0.delegate = self
     $0.separatorStyle = .none
-    $0.register(CollectionTableViewCell.self, forCellReuseIdentifier: CollectionTableViewCell.identifier)
+    $0.register(
+      CollectionTableViewCell.self,
+      forCellReuseIdentifier: CollectionTableViewCell.identifier
+    )
   }
   
   // MARK: - Property
@@ -27,8 +30,8 @@ final class MediaDetailViewController: BaseViewController {
   init(seriesID: Int) {
     super.init()
     
-    hideBackTitle()
     fetchDatas(with: seriesID)
+    hideBackTitle()
     setEmtpyOutBarButton()
   }
   
@@ -107,12 +110,12 @@ final class MediaDetailViewController: BaseViewController {
 extension MediaDetailViewController: TableControllable {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return Collection.Search.allCases.count
+    return Collection.MediaDetail.allCases.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let collection = Collection.Search.allCases[indexPath.row]
+    let collection = Collection.MediaDetail.allCases[indexPath.row]
     
     let cell = tableView.dequeueReusableCell(
       withIdentifier: CollectionTableViewCell.identifier,
@@ -168,9 +171,11 @@ extension MediaDetailViewController: CollectionControllable {
     }
   }
   
+  // TODO: - 작품 / 배우 모두 탭해서 Detail 가능하도록
+  /// 현재 작품 / 배우 Coordinator가 분리되어있는데, 중첩 이동이 가능해서 통합이 필요할수도 있을 것 같음
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard 
-      Collection.Search.recommend.tag == collectionView.tag,
+    guard
+      Collection.MediaDetail.recommend.tag == collectionView.tag,
       let data = recommendationList[at: indexPath.row]
     else {
       return
