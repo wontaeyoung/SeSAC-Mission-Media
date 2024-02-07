@@ -30,4 +30,18 @@ extension ProfileCoordinator {
     
     self.push(viewController)
   }
+  
+  func showUpdateProfileViewController(
+    profileItem: ProfileItem,
+    currentText: String,
+    applyAction: @escaping (String) -> Void
+  ) {
+    let viewController = UpdateProfileViewController(
+      profileItem: profileItem,
+      currentText: currentText,
+      applyAction: applyAction
+    )
+    
+    self.push(viewController)
+  }
 }
