@@ -37,4 +37,24 @@ extension MediaDetailCoordinator {
     
     self.push(viewController)
   }
+  
+  @MainActor
+  func combineActorDetailFlow(with actor: Actor) {
+    let coordinator = ActorDetailCoordinator(self.navigationController)
+    coordinator.setData(with: actor)
+    coordinator.delegate = self
+    self.addChild(coordinator)
+    
+    coordinator.start()
+  }
 }
+
+extension MediaDetailCoordinator: CoordinatorDelegate {
+  
+  @MainActor
+  func coordinatorDidEnd(_ childCoordinator: Coordinator) {
+    self.end()
+    delegate?.coordinatorDidEnd(self)
+  }
+}
+

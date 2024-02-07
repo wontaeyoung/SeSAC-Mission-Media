@@ -49,7 +49,6 @@ extension Coordinator {
   @MainActor
   func end() {
     self.emptyOut()
-    self.popToRoot()
     self.delegate?.coordinatorDidEnd(self)
   }
   

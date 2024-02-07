@@ -114,7 +114,6 @@ extension MediaDetailViewController: TableControllable {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
     let collection = Collection.MediaDetail.allCases[indexPath.row]
     
     let cell = tableView.dequeueReusableCell(
@@ -142,12 +141,16 @@ extension MediaDetailViewController: CollectionControllable {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return collectionView.tag == .zero ? recommendationList.count : castList.count
+    let collection = Collection.MediaDetail.allCases[collectionView.tag]
+    
+    return collection == .recommend ? recommendationList.count : castList.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    switch collectionView.tag == .zero {
-      case true:
+    let collection = Collection.MediaDetail.allCases[collectionView.tag]
+    
+    switch collection {
+      case .recommend:
         let cell = collectionView.dequeueReusableCell(
           withReuseIdentifier: MediaCollectionViewCell.identifier,
           for: indexPath
@@ -158,7 +161,7 @@ extension MediaDetailViewController: CollectionControllable {
         
         return cell
         
-      case false:
+      case .cast:
         let cell = collectionView.dequeueReusableCell(
           withReuseIdentifier: ActorCollectionViewCell.identifier,
           for: indexPath
@@ -172,15 +175,20 @@ extension MediaDetailViewController: CollectionControllable {
   }
   
   // TODO: - 작품 / 배우 모두 탭해서 Detail 가능하도록
-  /// 현재 작품 / 배우 Coordinator가 분리되어있는데, 중첩 이동이 가능해서 통합이 필요할수도 있을 것 같음
+  /// 현재 작품 / 배우 Coordinator가 분리되어있는데, 서로의 화면으로 중첩이 가능해서 통합이 필요할수도 있을 것 같음
+  /// Coordinator 분리를 하려면 중첩으로 Coordinator가 combine 된 상황에서 다 비우고 나올 수 있게 해야함
+  ///
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard
-      Collection.MediaDetail.recommend.tag == collectionView.tag,
-      let data = recommendationList[at: indexPath.row]
-    else {
-      return
-    }
+    let collection = Collection.MediaDetail.allCases[collectionView.tag]
     
-    coordinator?.showMediaDetailViewController(with: data.id)
+    switch collection {
+      case .recommend:
+        let data = recommendationList[indexPath.row]
+        coordinator?.showMediaDetailViewController(with: data.id)
+        
+      case .cast:
+        let data = castList[indexPath.row]
+        coordinator?.combineActorDetailFlow(with: data)
+    }
   }
 }

@@ -146,7 +146,6 @@ extension ActorDetailViewController: CollectionControllable {
     let filmography: [Media] = mediaType == .tv ? self.actor.tvFilmography : self.actor.movieFilmography
     let data: Media = filmography[indexPath.row]
     
-    coordinator?.showMediaDetailViewController(with: data.id)
+    coordinator?.combineMediaDetailFlow(with: data.id)
   }
 }
-

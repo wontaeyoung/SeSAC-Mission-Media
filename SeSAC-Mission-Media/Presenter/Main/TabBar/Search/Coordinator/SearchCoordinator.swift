@@ -56,5 +56,6 @@ extension SearchCoordinator: CoordinatorDelegate {
   
   func coordinatorDidEnd(_ childCoordinator: Coordinator) {
     self.emptyOut()
+    self.popToRoot()
   }
 }
