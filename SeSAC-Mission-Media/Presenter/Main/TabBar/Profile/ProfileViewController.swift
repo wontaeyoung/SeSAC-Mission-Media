@@ -7,6 +7,18 @@
 
 import UIKit
 
+enum ProfileItem: String, CaseIterable {
+  case name = "이름"
+  case nickname = "사용자 이름"
+  case gender = "성별 대명사"
+  case intro = "소개"
+  case link = "링크"
+  
+  var title: String {
+    return self.rawValue
+  }
+}
+
 final class ProfileViewController: BaseViewController {
   
   // MARK: - UI
