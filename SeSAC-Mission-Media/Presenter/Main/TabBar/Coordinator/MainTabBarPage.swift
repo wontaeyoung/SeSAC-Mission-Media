@@ -42,8 +42,23 @@ enum MainTabBarPage: Int, CaseIterable {
     }
   }
   
+  var selectedIcon: UIImage? {
+    switch self {
+      case .home:
+        return UIImage(systemName: "house.fill")
+        
+      case .search:
+        return UIImage(systemName: "magnifyingglass")
+        
+      case .profile:
+        return UIImage(systemName: "person.fill")
+    }
+  }
+  
   var tabBarItem: UITabBarItem {
-    return UITabBarItem(title: title, image: icon, tag: index)
+    return UITabBarItem(title: title, image: icon, tag: index).configured {
+      $0.selectedImage = selectedIcon
+    }
   }
 }
 
