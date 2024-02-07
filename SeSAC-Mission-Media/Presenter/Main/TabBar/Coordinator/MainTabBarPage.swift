@@ -10,6 +10,7 @@ import UIKit
 enum MainTabBarPage: Int, CaseIterable {
   case home = 0
   case search
+  case profile
   
   var index: Int {
     self.rawValue
@@ -22,6 +23,9 @@ enum MainTabBarPage: Int, CaseIterable {
         
       case .search:
         return "검색"
+        
+      case .profile:
+        return "프로필"
     }
   }
   
@@ -32,6 +36,9 @@ enum MainTabBarPage: Int, CaseIterable {
         
       case .search:
         return UIImage(systemName: "magnifyingglass")
+        
+      case .profile:
+        return UIImage(systemName: "person")
     }
   }
   
