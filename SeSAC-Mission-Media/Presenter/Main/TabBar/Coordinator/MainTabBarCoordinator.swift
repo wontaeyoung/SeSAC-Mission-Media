@@ -59,6 +59,11 @@ final class MainTabBarCoordinator: Coordinator {
         let searchCoordinator = SearchCoordinator(tabPageController)
         searchCoordinator.start()
         self.addChild(searchCoordinator)
+        
+      case .profile:
+        let profileCoordinator = ProfileCoordinator(tabPageController)
+        profileCoordinator.start()
+        self.addChild(profileCoordinator)
     }
   }
 }
