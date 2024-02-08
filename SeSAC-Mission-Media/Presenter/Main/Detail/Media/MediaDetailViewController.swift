@@ -58,7 +58,7 @@ final class MediaDetailViewController: BaseViewController {
     
     APIManager.shared.callRequest(
       responseType: MediaDetailDTO.self,
-      router: TVRouter.seriesDetails(seriesID: seriesID)
+      router: TVRouter.details(seriesID: seriesID)
     ) { [weak self] response in
       guard let self else { return }
       
@@ -69,7 +69,7 @@ final class MediaDetailViewController: BaseViewController {
     group.enter()
     APIManager.shared.callRequest(
       responseType: MediaResponseDTO.self,
-      router: TVRouter.seriesRecommandation(seriesID: seriesID)
+      router: TVRouter.recommandation(seriesID: seriesID)
     ) { [weak self] response in
       guard let self else { return }
       
@@ -80,7 +80,7 @@ final class MediaDetailViewController: BaseViewController {
     group.enter()
     APIManager.shared.callRequest(
       responseType: ActorResponseDTO.self,
-      router: TVRouter.seriesAggregateCredits(seriesID: seriesID)
+      router: TVRouter.credits(seriesID: seriesID)
     ) { [weak self] response in
       guard let self else { return }
       
