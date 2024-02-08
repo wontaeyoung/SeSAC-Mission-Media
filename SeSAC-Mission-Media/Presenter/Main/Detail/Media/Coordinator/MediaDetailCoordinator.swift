@@ -48,6 +48,13 @@ extension MediaDetailCoordinator {
     
     coordinator.start()
   }
+  
+  func showTrailerViewController(with media: Media) {
+    let viewController = TrailerViewController(media: media)
+    viewController.coordinator = self
+    
+    self.push(viewController)
+  }
 }
 
 extension MediaDetailCoordinator: CoordinatorDelegate {

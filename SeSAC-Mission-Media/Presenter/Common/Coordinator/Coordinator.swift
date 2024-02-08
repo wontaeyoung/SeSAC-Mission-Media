@@ -86,7 +86,7 @@ extension Coordinator {
     message: String,
     okTitle: String? = nil,
     okStyle: UIAlertAction.Style = .default,
-    isCancelable: Bool = true,
+    isCancelable: Bool = false,
     completion: (() -> Void)? = nil
   ) {
     var alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
