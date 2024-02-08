@@ -24,6 +24,7 @@ final class MediaDetailViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: MediaDetailCoordinator?
+  private let mediaDetail: MediaDetail
   private var recommendationList: [Media] = []
   private var castList: [Actor] = []
   
@@ -62,6 +63,7 @@ final class MediaDetailViewController: BaseViewController {
     ) { [weak self] response in
       guard let self else { return }
       
+      self.mediaDetail = response
       navigationTitle(with: response.name)
       summaryView.setData(with: response)
     }
@@ -174,10 +176,6 @@ extension MediaDetailViewController: CollectionControllable {
     }
   }
   
-  // TODO: - 작품 / 배우 모두 탭해서 Detail 가능하도록
-  /// 현재 작품 / 배우 Coordinator가 분리되어있는데, 서로의 화면으로 중첩이 가능해서 통합이 필요할수도 있을 것 같음
-  /// Coordinator 분리를 하려면 중첩으로 Coordinator가 combine 된 상황에서 다 비우고 나올 수 있게 해야함
-  ///
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let collection = Collection.MediaDetail.allCases[collectionView.tag]
     
