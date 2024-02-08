@@ -12,7 +12,8 @@ final class MediaDetailCoordinator: Coordinator {
   weak var delegate: CoordinatorDelegate?
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
-  private var seriesID: Int? = nil
+  
+  private var media: Media? = nil
   
   init(_ navigationController: UINavigationController) {
     self.navigationController = navigationController
@@ -20,19 +21,19 @@ final class MediaDetailCoordinator: Coordinator {
   }
   
   func start() {
-    guard let seriesID else { return }
+    guard let media else { return }
     
-    showMediaDetailViewController(with: seriesID)
+    showMediaDetailViewController(with: media)
   }
   
-  func setData(with seriesID: Int) {
-    self.seriesID = seriesID
+  func setData(with media: Media) {
+    self.media = media
   }
 }
 
 extension MediaDetailCoordinator {
-  func showMediaDetailViewController(with seriesID: Int) {
-    let viewController = MediaDetailViewController(seriesID: seriesID)
+  func showMediaDetailViewController(with media: Media) {
+    let viewController = MediaDetailViewController(media: media)
     viewController.coordinator = self
     
     self.push(viewController)

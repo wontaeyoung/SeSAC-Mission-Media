@@ -157,6 +157,6 @@ extension HomeViewController: CollectionControllable {
       return
     }
     
-    coordinator?.combineMediaDetailFlow(with: data.id)
+    coordinator?.combineMediaDetailFlow(with: data)
   }
 }

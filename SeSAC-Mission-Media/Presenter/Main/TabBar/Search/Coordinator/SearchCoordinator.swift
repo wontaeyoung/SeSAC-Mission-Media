@@ -32,9 +32,9 @@ extension SearchCoordinator {
   }
   
   @MainActor
-  func combineMediaDetailFlow(with seriesID: Int) {
+  func combineMediaDetailFlow(with media: Media) {
     let coordinator = MediaDetailCoordinator(self.navigationController)
-    coordinator.setData(with: seriesID)
+    coordinator.setData(with: media)
     coordinator.delegate = self
     self.addChild(coordinator)
     

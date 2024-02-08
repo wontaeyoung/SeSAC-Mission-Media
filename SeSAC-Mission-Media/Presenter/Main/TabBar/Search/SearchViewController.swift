@@ -146,7 +146,6 @@ extension SearchViewController {
   func makeAction(with menu: SearchMenu) -> UIAction {
     return UIAction(title: menu.title, image: menu.image) { action in
       self.currentSearchMenu = menu
-      print("여기!!", self.currentSearchMenu)
     }
   }
 }
@@ -247,7 +246,7 @@ extension SearchViewController: TableControllable {
     switch currentSearchMenu {
       case .content:
         let data = mediaList[indexPath.row]
-        coordinator?.combineMediaDetailFlow(with: data.id)
+        coordinator?.combineMediaDetailFlow(with: data)
         
       case .person:
         let data = actorList[indexPath.row]

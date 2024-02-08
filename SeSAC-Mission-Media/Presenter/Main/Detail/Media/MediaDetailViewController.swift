@@ -24,14 +24,14 @@ final class MediaDetailViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: MediaDetailCoordinator?
-  private let mediaDetail: MediaDetail
+  private var mediaDetail: MediaDetail?
   private var recommendationList: [Media] = []
   private var castList: [Actor] = []
   
-  init(seriesID: Int) {
+  init(media: Media) {
     super.init()
     
-    fetchDatas(with: seriesID)
+    fetchDatas(with: media)
     hideBackTitle()
     setEmtpyOutBarButton()
   }
@@ -54,12 +54,12 @@ final class MediaDetailViewController: BaseViewController {
   
   
   // MARK: - Method
-  private func fetchDatas(with seriesID: Int) {
+  private func fetchDatas(with media: Media) {
     let group = DispatchGroup()
     
     APIManager.shared.callRequest(
       responseType: MediaDetailDTO.self,
-      router: TVRouter.details(seriesID: seriesID)
+      router: media.type == .tv ? TVRouter.details(seriesID: media.id) : MovieRouter.details(movieID: media.id)
     ) { [weak self] response in
       guard let self else { return }
       
@@ -71,7 +71,7 @@ final class MediaDetailViewController: BaseViewController {
     group.enter()
     APIManager.shared.callRequest(
       responseType: MediaResponseDTO.self,
-      router: TVRouter.recommandation(seriesID: seriesID)
+      router: media.type == .tv ? TVRouter.recommandation(seriesID: media.id) : MovieRouter.recommandation(movieID: media.id)
     ) { [weak self] response in
       guard let self else { return }
       
@@ -82,7 +82,7 @@ final class MediaDetailViewController: BaseViewController {
     group.enter()
     APIManager.shared.callRequest(
       responseType: ActorResponseDTO.self,
-      router: TVRouter.credits(seriesID: seriesID)
+      router: media.type == .tv ? TVRouter.credits(seriesID: media.id) : MovieRouter.credits(movieID: media.id)
     ) { [weak self] response in
       guard let self else { return }
       
@@ -182,7 +182,7 @@ extension MediaDetailViewController: CollectionControllable {
     switch collection {
       case .recommend:
         let data = recommendationList[indexPath.row]
-        coordinator?.showMediaDetailViewController(with: data.id)
+        coordinator?.showMediaDetailViewController(with: data)
         
       case .cast:
         let data = castList[indexPath.row]
