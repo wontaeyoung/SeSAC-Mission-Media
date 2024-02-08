@@ -12,8 +12,14 @@ import WebKit
 final class TrailerViewController: BaseViewController {
   
   // MARK: - UI
-  private let trailerWebView = WKWebView()
-  
+  private lazy var trailerWebView = WKWebView().configured {
+    $0.navigationDelegate = self
+  }
+  private lazy var loadingIndicator = UIActivityIndicatorView().configured {
+    $0.style = .large
+    $0.center = view.center
+    $0.hidesWhenStopped = true
+  }
   
   // MARK: - Property
   weak var coordinator: MediaDetailCoordinator?
@@ -29,7 +35,7 @@ final class TrailerViewController: BaseViewController {
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    view.addSubview(trailerWebView)
+    view.addSubviews(trailerWebView, loadingIndicator)
   }
   
   override func setConstraint() {
@@ -71,3 +77,26 @@ final class TrailerViewController: BaseViewController {
   }
 }
 
+// MARK: - Loading Indicator
+extension TrailerViewController {
+  func startLoading() {
+    loadingIndicator.startAnimating()
+  }
+  
+  func stopLoading() {
+    loadingIndicator.stopAnimating()
+  }
+}
+
+// MARK: - WebView Delegate
+extension TrailerViewController: WKNavigationDelegate {
+  // 로드 시작 시
+  func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    startLoading()
+  }
+  
+  // 로드 완료 시
+  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    stopLoading()
+  }
+}
