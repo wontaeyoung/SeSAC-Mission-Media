@@ -12,9 +12,10 @@ enum TVRouter: Router {
   
   case topRated
   case popular
-  case seriesDetails(seriesID: Int)
-  case seriesRecommandation(seriesID: Int)
-  case seriesAggregateCredits(seriesID: Int)
+  case details(seriesID: Int)
+  case recommandation(seriesID: Int)
+  case credits(seriesID: Int)
+  case videos(seriesID: Int)
   
   var method: HTTPMethod {
     switch self {
@@ -24,13 +25,16 @@ enum TVRouter: Router {
       case .popular:
         return .get
         
-      case .seriesDetails:
+      case .details:
         return .get
         
-      case .seriesRecommandation:
+      case .recommandation:
         return .get
         
-      case .seriesAggregateCredits:
+      case .credits:
+        return .get
+        
+      case .videos:
         return .get
     }
   }
@@ -47,14 +51,17 @@ enum TVRouter: Router {
       case .popular:
         return "/popular"
         
-      case .seriesDetails(let seriesID):
+      case .details(let seriesID):
         return "/\(seriesID)"
         
-      case .seriesRecommandation(let seriesID):
+      case .recommandation(let seriesID):
         return "/\(seriesID)/recommendations"
         
-      case .seriesAggregateCredits(let seriesID):
+      case .credits(let seriesID):
         return "/\(seriesID)/aggregate_credits"
+        
+      case .videos(let seriesID):
+        return "/\(seriesID)/videos"
     }
   }
   
@@ -72,14 +79,17 @@ enum TVRouter: Router {
       case .popular:
         return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
         
-      case .seriesDetails:
+      case .details:
         return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
         
-      case .seriesRecommandation:
+      case .recommandation:
         return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
         
-      case .seriesAggregateCredits:
-        return nil
+      case .credits:
+        return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
+        
+      case .videos:
+        return [parameters.language(iso: .kor).key: parameters.language(iso: .kor).value]
     }
   }
 }
