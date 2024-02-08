@@ -11,7 +11,9 @@ import SnapKit
 final class MediaDetailViewController: BaseViewController {
   
   // MARK: - UI
-  private let summaryView = MediaSummaryView()
+  private lazy var summaryView = MediaSummaryView {
+    self.coordinator?.showTrailerViewController(with: self.media)
+  }
   private lazy var tableView = UITableView().configured {
     $0.dataSource = self
     $0.delegate = self
@@ -24,11 +26,13 @@ final class MediaDetailViewController: BaseViewController {
   
   // MARK: - Property
   weak var coordinator: MediaDetailCoordinator?
-  private var mediaDetail: MediaDetail?
+  private let media: Media
   private var recommendationList: [Media] = []
   private var castList: [Actor] = []
   
   init(media: Media) {
+    self.media = media
+    
     super.init()
     
     fetchDatas(with: media)
@@ -63,8 +67,7 @@ final class MediaDetailViewController: BaseViewController {
     ) { [weak self] response in
       guard let self else { return }
       
-      self.mediaDetail = response
-      navigationTitle(with: response.name)
+      navigationTitle(with: response.name.replaceEmptyByDash)
       summaryView.setData(with: response)
     }
     

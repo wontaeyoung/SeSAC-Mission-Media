@@ -21,12 +21,32 @@ final class MediaSummaryView: BaseView {
   private let startDateLabel = SecondaryLabel()
   private let genreLabel = SecondaryLabel().configured { $0.numberOfLines = 2 }
   private let runningTimeLabel = SecondaryLabel()
-  private let broadcasterLogoImageView = UIImageView().configured { $0.contentMode = .scaleAspectFit }
+  private let broadcasterLogoImageView = UIImageView().configured {
+    $0.contentMode = .scaleAspectFit
+  }
   private let overviewLabel = SecondaryLabel().configured { $0.numberOfLines = 0 }
+  private let showTrailerButton = UIButton().configured { button in
+    button.configuration = .gray().configured {
+      $0.title = "예고편 보기"
+      $0.image = UIImage(systemName: "play.tv")
+      $0.imagePadding = 10
+      $0.buttonSize = .medium
+      $0.cornerStyle = .medium
+    }
+  }
   
   
   // MARK: - Property
   private let commonVerticalPadding = 12
+  private let showTrailerAction: () -> Void
+  
+  
+  // MARK: - Initializer
+  init(showTrailerAction: @escaping () -> Void) {
+    self.showTrailerAction = showTrailerAction
+    
+    super.init(frame: .zero)
+  }
   
   
   // MARK: - Life Cycle
@@ -34,11 +54,12 @@ final class MediaSummaryView: BaseView {
     addSubviews(
       backgroundImageView,
       posterImageView,
-      titleLabel,
+//      titleLabel,
       startDateLabel,
       genreLabel,
       runningTimeLabel,
       broadcasterLogoImageView,
+      showTrailerButton,
       overviewLabel
     )
   }
@@ -60,33 +81,40 @@ final class MediaSummaryView: BaseView {
       $0.height.equalTo(posterImageView.samplingSize.height)
     }
     
-    titleLabel.snp.makeConstraints {
+//    titleLabel.snp.makeConstraints {
+//      $0.top.equalToSuperview().offset(commonVerticalPadding)
+//      $0.leading.equalTo(posterImageView.snp.trailing).offset(16)
+//      $0.trailing.equalToSuperview().offset(-16)
+//    }
+    
+    startDateLabel.snp.makeConstraints {
       $0.top.equalToSuperview().offset(commonVerticalPadding)
       $0.leading.equalTo(posterImageView.snp.trailing).offset(16)
       $0.trailing.equalToSuperview().offset(-16)
     }
     
-    startDateLabel.snp.makeConstraints {
-      $0.top.equalTo(titleLabel.snp.bottom).offset(commonVerticalPadding)
-      $0.horizontalEdges.equalTo(titleLabel)
-    }
-    
     genreLabel.snp.makeConstraints {
       $0.top.equalTo(startDateLabel.snp.bottom).offset(commonVerticalPadding)
-      $0.horizontalEdges.equalTo(titleLabel)
+      $0.horizontalEdges.equalTo(startDateLabel)
     }
     
     runningTimeLabel.snp.makeConstraints {
       $0.top.equalTo(genreLabel.snp.bottom).offset(commonVerticalPadding)
-      $0.horizontalEdges.equalTo(titleLabel)
+      $0.horizontalEdges.equalTo(startDateLabel)
     }
     
     broadcasterLogoImageView.snp.makeConstraints {
       $0.top.equalTo(runningTimeLabel.snp.bottom).offset(commonVerticalPadding)
-      $0.leading.equalTo(titleLabel.snp.leading)
-      $0.trailing.lessThanOrEqualTo(titleLabel)
+      $0.leading.equalTo(startDateLabel.snp.leading)
+      $0.trailing.lessThanOrEqualTo(startDateLabel)
       $0.height.equalTo(20)
       $0.width.equalTo(broadcasterLogoImageView.snp.height).multipliedBy(2.5)
+    }
+    
+    showTrailerButton.snp.makeConstraints {
+      $0.top.greaterThanOrEqualTo(broadcasterLogoImageView.snp.bottom).offset(commonVerticalPadding)
+      $0.horizontalEdges.equalTo(startDateLabel)
+      $0.bottom.equalTo(posterImageView.snp.bottom)
     }
     
     overviewLabel.snp.makeConstraints {
@@ -113,10 +141,14 @@ final class MediaSummaryView: BaseView {
       with: CGSize(width: 20 * 2.5, height: 20)
     )
     
-    titleLabel.text = data.name.replaceEmptyByDash
     startDateLabel.text = data.startDate
     genreLabel.text = data.genres.joined(separator: " · ").replaceEmptyByDash
     runningTimeLabel.text = data.runningTime.replaceEmptyByDash + " 분"
     overviewLabel.text = data.overview.replaceEmptyByDash
+    showTrailerButton.addTarget(self, action: #selector(showTrailerButtonTapped), for: .touchUpInside)
+  }
+  
+  @objc private func showTrailerButtonTapped() {
+    showTrailerAction()
   }
 }
