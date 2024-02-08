@@ -12,64 +12,73 @@ final class HomeViewController: BaseViewController {
   
   
   // MARK: - UI
-  private lazy var tvTableView = UITableView().configured {
+  private lazy var mediaTableView = UITableView().configured {
     $0.delegate = self
     $0.dataSource = self
     $0.register(CollectionTableViewCell.self, forCellReuseIdentifier: CollectionTableViewCell.identifier)
   }
   
+  
   // MARK: - Property
   weak var coordinator: HomeCoordinator?
-  private var tvListDictionary: [Collection.Home: [Media]] = [:] {
-    didSet {
-      tvTableView.reloadData()
-    }
-  }
+  private var mediaListDictionary: [Collection.Home: [Media]] = [:]
   
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    view.addSubview(tvTableView)
+    view.addSubview(mediaTableView)
   }
   
   override func setAttribute() {
     hideBackTitle()
     navigationTitle(with: "홈")
     
+    let group = DispatchGroup()
+    
     Collection.Home.allCases.forEach { collection in
       switch collection {
         case .trend:
+          group.enter()
           APIManager.shared.callRequest(
             responseType: MediaResponseDTO.self,
             router: TrendRouter.tv(timeWindow: .week)
           ) { response in
             
-            self.tvListDictionary[collection] = response.results
+            self.mediaListDictionary[collection] = response.results
+            group.leave()
           }
           
         case .topRated:
+          group.enter()
           APIManager.shared.callRequest(
             responseType: MediaResponseDTO.self,
             router: TVRouter.topRated
           ) { response in
             
-            self.tvListDictionary[collection] = response.results
+            self.mediaListDictionary[collection] = response.results
+            group.leave()
           }
           
         case .popular:
+          group.enter()
           APIManager.shared.callRequest(
             responseType: MediaResponseDTO.self,
             router: TVRouter.popular
           ) { response in
             
-            self.tvListDictionary[collection] = response.results
+            self.mediaListDictionary[collection] = response.results
+            group.leave()
           }
       }
+    }
+    
+    group.notify(queue: .main) {
+      self.mediaTableView.reloadData()
     }
   }
   
   override func setConstraint() {
-    tvTableView.snp.makeConstraints {
+    mediaTableView.snp.makeConstraints {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
@@ -112,7 +121,7 @@ extension HomeViewController: CollectionControllable {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard
       let collection = Collection.Home.allCases[at: collectionView.tag],
-      let list = tvListDictionary[collection]
+      let list = mediaListDictionary[collection]
     else {
       return 0
     }
@@ -128,7 +137,7 @@ extension HomeViewController: CollectionControllable {
     
     guard
       let collection = Collection.Home.allCases[at: collectionView.tag],
-      let list = tvListDictionary[collection],
+      let list = mediaListDictionary[collection],
       let data = list[at: indexPath.row]
     else {
       return cell
@@ -142,7 +151,7 @@ extension HomeViewController: CollectionControllable {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard
       let collection = Collection.Home.allCases[at: collectionView.tag],
-      let list = tvListDictionary[collection],
+      let list = mediaListDictionary[collection],
       let data = list[at: indexPath.row]
     else {
       return
